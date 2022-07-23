@@ -1,0 +1,30 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 29, 2022, 1:38:20 PM
+    Author     : Admin
+*/
+
+.navbar{
+    width: 300px;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+.navbar-nav{
+    position: absolute;
+    top: 0px;
+}
+.navbar-nav a{
+    height: 40px;
+}
+.navbar a:hover{
+    background-color: #6495ED;
+}
+hr{
+    color: #D2D2D2;
+}
