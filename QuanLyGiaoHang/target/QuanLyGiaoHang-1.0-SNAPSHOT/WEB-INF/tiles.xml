@@ -7,6 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this 
 Software Foundation//DTD Tiles Configuration 3.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
+<!--============================= GUEST =====================================-->
 <tiles-definitions>
     <definition name="baseLayout" template="/WEB-INF/layout/base.jsp">
         <put-attribute name="title" value="..."/>
@@ -16,53 +17,18 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     </definition>
     <definition name="index" extends="baseLayout">
         <put-attribute name="title" value="Trang chủ"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/guest/index.jsp"/>
     </definition>
-    <definition name="login" extends="baseLayout">
+     <definition name="Login" extends="baseLayout">
         <put-attribute name="title" value="Đăng nhập"/>
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
     </definition>
-    <definition name="register" extends="baseLayout">
+    <definition name="signup" extends="baseLayout">
         <put-attribute name="title" value="Đăng ký"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/register.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/signup.jsp"/>
     </definition>
-    <definition name="registershipper" extends="baseLayout">
-        <put-attribute name="title" value="Đăng ký shipper"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/registershipper.jsp"/>
-    </definition>
-    <definition name="received" extends="baseLayout">
-        <put-attribute name="title" value="Đơn hàng đã nhận"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/received.jsp"/>
-    </definition>
-    <definition name="shipper-info2" extends="baseLayout">
-        <put-attribute name="title" value="Thông tin người dùng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/shipper-info2.jsp"/>
-    </definition>
-    <definition name="user" extends="baseLayout">
-        <put-attribute name="title" value="Dịch vụ khách hàng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/user.jsp"/>
-    </definition>
-     <definition name="order" extends="baseLayout">
-        <put-attribute name="title" value="Đặt đơn hàng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/order.jsp"/>
-    </definition>
-    <definition name="orderlist" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý đơn hàng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/orderlist.jsp"/>
-    </definition>
-    <definition name="orderdetail" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết đơn hàng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/orderdetail.jsp"/>
-    </definition>
-    <definition name="auctions" extends="baseLayout">
-        <put-attribute name="title" value="Danh sách đơn hàng đang đấu giá"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/auctions.jsp"/>
-    </definition>
-    <definition name="auctionsdetail" extends="baseLayout">
-        <put-attribute name="title" value="Đấu giá đơn hàng"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/auctionsdetail.jsp"/>
-    </definition>
-    
+
+<!--============================= ADMIN =====================================--> 
     <definition name="baseAdminLayout" template="/WEB-INF/layout/adminbase.jsp">
         <put-attribute name="title" value="Quản trị hệ thống quản lý giao hàng"/>
         <put-attribute name="left" value="/WEB-INF/layout/adminleft.jsp"/>
@@ -70,34 +36,19 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="base"/>
     </definition>
     <definition name="admin" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/admin.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/admin.jsp"/>
     </definition>
-    <definition name="shipper-list" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/shipper-list.jsp"/>
+    
+    <definition name="discount" extends="baseAdminLayout">
+        <put-attribute name="title" value="Khuyến mãi"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/discount.jsp"/>
     </definition>
-    <definition name="shipper-info" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/shipper-info.jsp"/>
+    
+    <definition name="browsing-shipper" extends="baseAdminLayout">
+        <put-attribute name="title" value="Duyệt tài khoản shipper"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/browsing-shipper.jsp"/>
     </definition>
-    <definition name="shipper-browse" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/shipper-browse.jsp"/>
-    </definition>
-    <definition name="shipper-setting" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/shipper-setting.jsp"/>
-    </definition>
-    <definition name="statistique" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/statistique.jsp"/>
-    </definition>
-    <definition name="order-search" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/order-search.jsp"/>
-    </definition>
-    <definition name="order-search2" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/order-search2.jsp"/>
-    </definition>
-    <definition name="chart" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/chart.jsp"/>
-    </definition>
-    <definition name="chart2" extends="baseAdminLayout">
-        <put-attribute name="content" value="/WEB-INF/jsp/chart2.jsp"/>
-    </definition>
+    
+    
 </tiles-definitions>
 

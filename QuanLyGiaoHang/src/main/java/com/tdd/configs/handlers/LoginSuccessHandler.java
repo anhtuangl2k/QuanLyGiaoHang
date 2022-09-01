@@ -4,8 +4,6 @@
  */
 package com.tdd.configs.handlers;
 
-import com.tdd.pojos.Login;
-import com.tdd.service.LoginService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,15 +19,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
-    @Autowired
-    private LoginService userDetailsService;
+
     
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication a) throws IOException, ServletException {
-        Login u = this.userDetailsService.getLogin(a.getName()).get(0);
-        request.getSession().setAttribute("currentUser", u);
-    
-        response.sendRedirect("/QuanLyGiaoHang");
+//        Login u = this.userDetailsService.getLogin(a.getName()).get(0);
+//        request.getSession().setAttribute("currentUser", u);
+//    
+//        response.sendRedirect("/QuanLyGiaoHang");
     }
     
 }

@@ -4,9 +4,7 @@
  */
 package com.tdd.configs;
 
-import com.tdd.formatter.LoginFormartter;
-import com.tdd.validator.LoginNameValidator;
-import com.tdd.validator.WebAppValidator;
+import com.tdd.validator.AccountValidator;
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.context.MessageSource;
@@ -53,37 +51,30 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
     }
 
-    @Override
-    public Validator getValidator() {
-        return validator();
-    }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new LoginFormartter());
-    }
+      
 
-    @Bean
-    public WebAppValidator loginValidator() {
-        Set<Validator> springValidators = new HashSet<>();
-        springValidators.add(new LoginNameValidator());
-
-        WebAppValidator v = new WebAppValidator();
-        v.setSpringValidators(springValidators);
-
-        return v;
-    }
+//    @Override
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addFormatter(new LoginFormartter());
+//    }
 
 //    @Bean
-//    public WebAppValidator orderDetailValidator(){
+//    public WebAppValidator loginValidator() {
 //        Set<Validator> springValidators = new HashSet<>();
-//        springValidators.add(new OrderDetailValidator());
-//        
+//        springValidators.add(new LoginNameValidator());
+//
 //        WebAppValidator v = new WebAppValidator();
 //        v.setSpringValidators(springValidators);
-//        
+//
 //        return v;
 //    }
+
+    
+    @Override
+    public Validator getValidator() {
+        return validator(); 
+    }
     
     @Bean
     public LocalValidatorFactoryBean validator() {

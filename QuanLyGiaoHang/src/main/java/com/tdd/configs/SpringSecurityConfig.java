@@ -38,8 +38,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler loginSuccessHandler;
     @Autowired
     private LogoutSuccessHandler logoutHandler;
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -48,8 +46,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+//        auth.userDetailsService(userDetailsService)
+//                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -60,24 +58,24 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin().defaultSuccessUrl("/")
                 .failureUrl("/login?error");
-        http.formLogin().successHandler(this.loginSuccessHandler);
-
-//        http.logout().logoutSuccessUrl("/login");
-        http.logout().logoutSuccessHandler(this.logoutHandler);
-
-        http.exceptionHandling()
-                .accessDeniedPage("/login?accessDenied");
-
-        http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/order/**")
-                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-                .antMatchers("/register/shipper")
-                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SHIPPER')")
-                .antMatchers("/shipper/**")
-                .access("hasAnyRole('ROLE_SHIPPER', 'ROLE_ADMIN')")
-                .antMatchers("/admin/**")
-                .access("hasRole( 'ROLE_ADMIN')");
-
+//        http.formLogin().successHandler(this.loginSuccessHandler);
+//
+////        http.logout().logoutSuccessUrl("/login");
+//        http.logout().logoutSuccessHandler(this.logoutHandler);
+//
+//        http.exceptionHandling()
+//                .accessDeniedPage("/login?accessDenied");
+//
+//        http.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/order/**")
+//                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+//                .antMatchers("/register/shipper")
+//                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SHIPPER')")
+//                .antMatchers("/shipper/**")
+//                .access("hasAnyRole('ROLE_SHIPPER', 'ROLE_ADMIN')")
+//                .antMatchers("/admin/**")
+//                .access("hasRole( 'ROLE_ADMIN')");
+//
         http.csrf().disable();
     }
     

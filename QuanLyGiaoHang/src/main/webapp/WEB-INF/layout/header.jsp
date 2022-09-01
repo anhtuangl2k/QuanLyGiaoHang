@@ -57,7 +57,7 @@
                     <a class="nav-link" href="<c:url value="/login"/>">Đăng nhập</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/register"/>">Đăng ký</a>
+                    <a class="nav-link" href="<c:url value="/signup"/>">Đăng ký</a>
                 </li>
             </c:if>
 
@@ -65,12 +65,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/"/>">
 
-                        <c:if test="${currentUser.avatar != null}">
-                            <img src="${currentUser.avatar}" class="rounded-circle" style="width: 30px"/>                         
-                        </c:if>
-                        <c:if test="${currentUser.avatar == null}">
-                            <i class="fa fa-user " aria-hidden="true"></i> 
-                        </c:if>
+
                         ${pageContext.request.userPrincipal.name}
                     </a>
                 </li>

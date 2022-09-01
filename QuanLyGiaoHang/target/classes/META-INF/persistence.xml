@@ -10,6 +10,14 @@
     <class>com.tdd.pojos.Login</class>
     <class>com.tdd.pojos.Auctions</class>
     <class>com.tdd.pojos.OrderStatus</class>
+    <class>com.tdd.pojos.Comment</class>
+    <class>com.tdd.pojos.Star</class>
+    <class>com.tdd.pojos.Auction</class>
+    <class>com.tdd.pojos.Discount</class>
+    <class>com.tdd.pojos.Order1</class>
+    <class>com.tdd.pojos.Information</class>
+    <class>com.tdd.pojos.Receipt</class>
+    <class>com.tdd.pojos.Account</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hethonggiaohang?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

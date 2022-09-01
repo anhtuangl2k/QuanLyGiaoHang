@@ -16,30 +16,17 @@
             <a class="nav-link text-white" href="<c:url value="/admin/shipper-browse"/>">Duyệt đơn đăng ký shipper</a>
         </li>
         <hr/>
+        
         <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/shipper-list"/>">Xem danh sách shipper</a>
+            <a class="nav-link text-white" href="<c:url value="/admin/discount"/>">Khuyễn mãi</a>
         </li>
         <hr/>
+        
         <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/shipper-setting"/>">Cập nhật thông tin shipper</a>
+            <a class="nav-link text-white" href="<c:url value="/admin/browsing-shipper"/>">Duyệt tài khoản shipper</a>
         </li>
         <hr/>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/statistique"/>">Thống kê đơn hàng</a>
-        </li>
-        <hr/>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/order-search"/>">Tra cứu thông tin đơn hàng</a>
-        </li>
-        <hr/>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/chart"/>">Biểu đồ tần suất giao hàng của shipper</a>
-        </li>
-        <hr/>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/chart2"/>">Biểu đồ doanh thu của shipper</a>
-        </li>
-        <hr/>
+
     </ul>
 
 </nav>
