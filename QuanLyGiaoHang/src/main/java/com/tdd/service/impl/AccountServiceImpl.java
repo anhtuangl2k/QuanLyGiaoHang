@@ -10,6 +10,7 @@ import com.tdd.repository.AccountResponsitory;
 import com.tdd.service.AccountService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,9 @@ public class AccountServiceImpl implements AccountService{
     
     @Autowired
     private AccountResponsitory accountResponsitory;
-
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+    
     @Override
     public boolean addAccount(Account account) {
         try {
@@ -27,6 +30,8 @@ public class AccountServiceImpl implements AccountService{
             if(account.getType() == Account.SHIPPER){
                 account.setStatus(Account.DISABLE);
             }
+            String pass = account.getPassword();
+            account.setPassword(this.passwordEncoder.encode(pass));
             return this.accountResponsitory.addAccount(account);
         } catch (Exception e) {
             e.getMessage(); 

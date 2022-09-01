@@ -26,6 +26,11 @@
             <a class="nav-link text-white" href="<c:url value="/admin/browsing-shipper"/>">Duyệt tài khoản shipper</a>
         </li>
         <hr/>
+        
+        <li class="nav-item">
+            <a class="nav-link text-white" href="<c:url value="/admin/product"/>">Quản lý sản phẩm</a>
+        </li>
+        <hr/>
 
     </ul>
 

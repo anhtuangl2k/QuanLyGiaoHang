@@ -49,6 +49,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/jsp/admin/browsing-shipper.jsp"/>
     </definition>
     
+    <definition name="product" extends="baseAdminLayout">
+        <put-attribute name="title" value="Quản lý sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/product.jsp"/>
+    </definition>
+    
     
 </tiles-definitions>
 
