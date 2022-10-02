@@ -8,12 +8,18 @@ package com.tdd.service.impl;
 import com.tdd.pojos.Account;
 import com.tdd.repository.AccountResponsitory;
 import com.tdd.service.AccountService;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userDetailsService")
 public class AccountServiceImpl implements AccountService{
     
     @Autowired
@@ -52,6 +58,17 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public boolean changeStatus(int id) {
         return this.accountResponsitory.changeStatus(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<Account> accounts = this.accountResponsitory.getAccounts(username);
+        if(accounts.isEmpty())
+            throw new UsernameNotFoundException("Tài khoản không tồn tại");
+        Account a = accounts.get(0);
+        Set<GrantedAuthority> auth = new HashSet<>();
+        auth.add(new SimpleGrantedAuthority(a.getType().toString()));
+        return new org.springframework.security.core.userdetails.User(a.getUsername(), a.getPassword(), auth);
     }
     
     

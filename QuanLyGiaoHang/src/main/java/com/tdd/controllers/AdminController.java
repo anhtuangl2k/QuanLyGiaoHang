@@ -14,6 +14,7 @@ import com.tdd.service.ProductService;
 import com.tdd.validator.ProductValidator;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -63,8 +65,11 @@ public class AdminController {
     }
     
     @GetMapping("/admin/product")
-    public String productManager(Model model){
+    public String productManager(Model model, @RequestParam(required = false) Map<String, String> params){
         model.addAttribute("product", new Product());
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        model.addAttribute("products", this.productService.getListProduct(params.get("kw"), page));
+        model.addAttribute("counter", this.productService.countProduct());
         return "product";
     }
     

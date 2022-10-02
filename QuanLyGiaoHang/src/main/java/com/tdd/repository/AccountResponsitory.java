@@ -14,4 +14,5 @@ public interface AccountResponsitory {
     List<Account> getListAccountShipper();
     Account getAccountByID(int id);
     boolean changeStatus(int id);
+    List<Account> getAccounts(String username);
 }

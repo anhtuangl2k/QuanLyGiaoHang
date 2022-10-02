@@ -11,6 +11,7 @@ import com.tdd.pojos.Product;
 import com.tdd.repository.ProductRepository;
 import com.tdd.service.ProductService;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,16 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProductByID(int ID) {        
         return this.productRepository.getProductByID(ID);
+    }
+
+    @Override
+    public List<Product> getListProduct(String kw, int page) {
+        return this.productRepository.getListProduct(kw, page);
+    }
+
+    @Override
+    public long countProduct() {
+        return this.productRepository.countProduct();
     }
     
 }

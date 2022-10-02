@@ -24,14 +24,10 @@
             </li>
 
             <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Dịch vụ khách hàng
+            <li class="nav-item">
+                <a class="nav-link " href="<c:url value="/sell-Product"/>">
+                    Mua hàng
                 </a>
-                <div class="dropdown-menu" style="background-color: #343a40">
-                    <a class="dropdown-item nav-link" href="<c:url value="/order"/>">Đặt đơn hàng</a>
-                    <a class="dropdown-item nav-link" href="<c:url value="/order/list"/>">Quản lý đơn hàng</a>                
-                </div>
             </li>
 
             <!-- Dropdown -->
@@ -64,13 +60,17 @@
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/"/>">
-
-
                         ${pageContext.request.userPrincipal.name}
                     </a>
-                </li>
+                </li>                
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/logout"/>">Đăng xuất</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/cart"/>">
+                        <i class="fas fa-cart-plus"></i>
+                        <div class="badge badge-danger" id="cartCounter">${cartCounter}</div>
+                    </a> 
                 </li>
             </c:if>
         </ul>

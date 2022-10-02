@@ -22,10 +22,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- *
- * @author Admin
- */
+
 @Configuration
 @EnableWebSecurity
 @EnableTransactionManagement
@@ -38,6 +35,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler loginSuccessHandler;
     @Autowired
     private LogoutSuccessHandler logoutHandler;
+    
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -46,8 +46,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override

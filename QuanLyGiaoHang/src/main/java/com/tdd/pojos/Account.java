@@ -64,7 +64,6 @@ public class Account implements Serializable {
     @Size(max = 45)
     @Column(name = "Username")
     private String username;
-    @Size(max = 45)
     @Column(name = "Password")
     private String password;
     @Column(name = "Type")

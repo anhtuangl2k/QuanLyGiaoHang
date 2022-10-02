@@ -71,5 +71,21 @@ public class AccountResponsitoryImpl implements AccountResponsitory{
         }
         return false;
     }
+
+    @Override
+    public List<Account> getAccounts(String username) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();       
+        CriteriaQuery<Account> query = builder.createQuery(Account.class);
+        Root<Account> root = query.from(Account.class);
+        query = query.select(root);
+        
+        if(!username.isEmpty()){
+            Predicate p = builder.equal(root.get("username").as(String.class), username.trim());
+            query = query.where(p);
+        }       
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
     
 }

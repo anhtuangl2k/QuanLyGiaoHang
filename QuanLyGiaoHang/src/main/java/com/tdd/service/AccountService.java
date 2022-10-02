@@ -7,9 +7,10 @@ package com.tdd.service;
 
 import com.tdd.pojos.Account;
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 
-public interface AccountService {
+public interface AccountService extends UserDetailsService{
      public boolean addAccount(Account account);
       List<Account> getListAccountShipper();
       Account getAccountByID(int id);

@@ -61,8 +61,14 @@
     </div>
   </div>
 </div> 
-
-
+<form action="">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search" name="kw" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+      <input type="submit" value="Search" class="btn-primary">
+  </div>
+</div>
+</form>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -74,7 +80,27 @@
       <th scope="col">Xóa</th>
     </tr>
   </thead>
-  <tbody>
+  
 
+  <tbody>
+        <c:forEach var="p" items="${products}">
+        <tr>
+          <th scope="row">${p.id}</th>
+          <td>${p.name}</td>
+          <td>${p.price}</td>
+          <td>${p.amount}</td>
+          <td><button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter2" onclick="getDiscount(${discount.id})">Sửa</button></td>
+          <td><button type="button" class="btn btn-danger" data-dismiss="modal" >Xóa</button></td>
+        </tr>
+      </c:forEach>
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      <c:forEach begin="1" end="${Math.ceil(counter/12)}" var="i">
+          <li class="page-item"><a class="page-link" href="<c:url value="/admin/product"/>?page=${i}">${i}</a></li>
+      </c:forEach>
+
+  </ul>
+</nav>

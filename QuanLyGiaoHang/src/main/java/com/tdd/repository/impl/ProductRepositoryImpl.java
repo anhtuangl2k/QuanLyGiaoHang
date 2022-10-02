@@ -5,7 +5,6 @@
  */
 package com.tdd.repository.impl;
 
-import com.tdd.pojos.Discount;
 import com.tdd.pojos.Product;
 import com.tdd.repository.ProductRepository;
 import java.util.List;
@@ -62,12 +61,14 @@ public class ProductRepositoryImpl implements ProductRepository{
         query = query.select(root);
         
         if(!kw.isEmpty() && kw != null){
+            System.out.println(kw);
             Predicate p = builder.like(root.get("name").as(String.class), 
                     String.format("%%%s%%", kw));
+            query = query.where(p);
         }
         
         Query q = session.createQuery(query);
-        int max = 6;
+        int max = 12;
         q.setMaxResults(max);
         q.setFirstResult((page - 1)*max);
         
