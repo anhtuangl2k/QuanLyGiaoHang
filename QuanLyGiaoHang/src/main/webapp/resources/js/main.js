@@ -4,7 +4,6 @@
  */
 
 function addToCart(id, name, price){
-    console.log("oke");
     event.preventDefault();
     fetch("/QuanLyGiaoHang/api/cart", {
         method: 'post',
@@ -25,3 +24,40 @@ function addToCart(id, name, price){
     });
 }
 
+function updateCart(obj, productId){
+    fetch("/QuanLyGiaoHang/api/cart", {
+        method: 'put',
+        body : JSON.stringify({
+            "productId": productId,
+            "productName": "", 
+            "price": "",
+            "quantity": obj.value 
+        }),
+        headers: {
+            "Content-Type" : "application/json"
+        }
+        }).then(function (res){
+            return res.json();
+        }).then(function (data){
+            let counter = document.getElementById("cartCounter");
+            counter.innerText = data.counter;
+            let amount = document.getElementById("amountCart");
+            amount.innerText = data.amount;
+    });
+}
+
+
+function deleteCart(productId){
+    fetch(`/QuanLyGiaoHang/api/cart/${productId}`, {
+    method: 'delete'
+    }).then(function (res){
+        return res.json();
+    }).then(function (data){
+        let counter = document.getElementById("cartCounter");
+        counter.innerText = data.counter;
+        let amount = document.getElementById("amountCart");
+        amount.innerText = data.amount;
+        let row = document.getElementById(`product${productId}`);
+        row.style.display = "none";
+    });
+}

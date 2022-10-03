@@ -5,12 +5,16 @@
  */
 package com.tdd.controllers;
 
+import com.cloudinary.Util;
 import com.tdd.pojos.Cart;
 import com.tdd.utils.Utils;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,18 +41,26 @@ public class ApiCartController {
     }
     
     @PutMapping("/api/cart")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateToCart(@RequestBody Cart params, HttpSession session){
+    public ResponseEntity<Map<String, String>> updateToCart(@RequestBody Cart params, HttpSession session){
         Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
         if(cart == null)
             cart = new HashMap<>();
         int productId = params.getProductId();
         if(cart.containsKey(productId) == true){ // sản phẩm đã có trong giỏ
             Cart c = cart.get(productId);
-            c.setQuantity(c.getQuantity());
+            c.setQuantity(params.getQuantity());
         }
         session.setAttribute("cart", cart);
-        
+        return new ResponseEntity<>(Utils.cartStats(cart), HttpStatus.OK);   
     }
     
+    @DeleteMapping("/api/cart/{productId}")
+    public ResponseEntity<Map<String, String>> deleteCartItem(@PathVariable(value = "productId") int productId, HttpSession session){
+        Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        if(cart != null && cart.containsKey(productId)){
+            cart.remove(productId);
+            session.setAttribute("cart", cart);
+        }
+        return new ResponseEntity<>(Utils.cartStats(cart), HttpStatus.OK);   
+    }
 }

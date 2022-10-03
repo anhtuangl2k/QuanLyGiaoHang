@@ -6,6 +6,7 @@
 package com.tdd.pojos;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -34,6 +37,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByAmount", query = "SELECT p FROM Product p WHERE p.amount = :amount")})
 public class Product implements Serializable {
+
+    @OneToMany(mappedBy = "productID")
+    private Collection<ReceiptProduct> receiptProductCollection;
 
     @Size(max = 200)
     @Column(name = "Image")
@@ -141,6 +147,15 @@ public class Product implements Serializable {
      */
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    @XmlTransient
+    public Collection<ReceiptProduct> getReceiptProductCollection() {
+        return receiptProductCollection;
+    }
+
+    public void setReceiptProductCollection(Collection<ReceiptProduct> receiptProductCollection) {
+        this.receiptProductCollection = receiptProductCollection;
     }
     
 }

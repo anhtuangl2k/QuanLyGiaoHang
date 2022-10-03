@@ -6,6 +6,7 @@
 package com.tdd.pojos;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -40,6 +43,11 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Account.findByAvatar", query = "SELECT a FROM Account a WHERE a.avatar = :avatar"),
     @NamedQuery(name = "Account.findByCmnd", query = "SELECT a FROM Account a WHERE a.cmnd = :cmnd")})
 public class Account implements Serializable {
+
+    @OneToMany(mappedBy = "guestID")
+    private Collection<Receipt> receiptCollection;
+    @OneToMany(mappedBy = "shipperID")
+    private Collection<Receipt> receiptCollection1;
 
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 15)
@@ -221,6 +229,24 @@ public class Account implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @XmlTransient
+    public Collection<Receipt> getReceiptCollection() {
+        return receiptCollection;
+    }
+
+    public void setReceiptCollection(Collection<Receipt> receiptCollection) {
+        this.receiptCollection = receiptCollection;
+    }
+
+    @XmlTransient
+    public Collection<Receipt> getReceiptCollection1() {
+        return receiptCollection1;
+    }
+
+    public void setReceiptCollection1(Collection<Receipt> receiptCollection1) {
+        this.receiptCollection1 = receiptCollection1;
     }
     
 }

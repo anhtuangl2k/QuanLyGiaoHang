@@ -17,22 +17,27 @@
             <th>Đơn giá</th>
         </tr>
         <c:forEach items="${carts}" var="c">
-            <tr>
+            <tr id="product${c.productId}">
                 <th>${c.productId}</th>
                 <th>${c.productName}</th>
                 <th>
                     <div class="form-group">
-                        <input type="number" value="${c.quantity}" onblur="updateCart(this)" class="form-control"/>
+                        <input type="number" value="${c.quantity}" onblur="updateCart(this, ${c.productId})" class="form-control"/>
                     </div>
                 </th>
                 <th>${c.price}</th>
                 <th>
-                    <input type="button" value="Xóa" class="btn btn-danger"/>
+                    <input type="button" 
+                           value="Xóa" 
+                           onclick="deleteCart(${c.productId})"
+                           class="btn btn-danger"/>
                 </th>
             </tr>
 
         </c:forEach>
     </table>
-    
+    <div>
+        <h4 class="text-info">Tổng tiền hóa đơn: <span id="amountCart">${cartStats.amount}</span></h4>
+    </div>
     <input type="button" value="Thanh toán" class="btn btn-danger"/>
 </c:if>
