@@ -11,7 +11,9 @@ import com.tdd.repository.AccountResponsitory;
 import com.tdd.repository.ReceiptResponsitory;
 import com.tdd.service.ReceiptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReceiptServiceImpl implements ReceiptService{
     
     @Autowired
@@ -25,6 +27,7 @@ public class ReceiptServiceImpl implements ReceiptService{
         if(!username.isEmpty() && username != ""){
             Account a = this.accountResponsitory.getAccounts(username).get(0);
             receipt.setGuestID(a);
+            receipt.setStatus(Receipt.CHUA_GIAO);
             return this.receiptResponsitory.addReceipt(receipt);
         }     
         return false;

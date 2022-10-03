@@ -34,4 +34,12 @@ public class CartController {
         model.addAttribute("cartStats", Utils.cartStats(cart));
         return "cart";
     }
+    
+    @GetMapping("/payment")
+    public String payment(Model model, HttpSession session){
+        Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        
+        
+        return "cart";
+    }
 }
