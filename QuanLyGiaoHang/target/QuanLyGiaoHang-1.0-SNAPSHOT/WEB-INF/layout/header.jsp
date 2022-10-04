@@ -29,18 +29,13 @@
                     Mua hàng
                 </a>
             </li>
-
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Dịch vụ shipper
+            
+            <li class="nav-item">
+                <a class="nav-link " href="<c:url value="/order"/>">
+                    Đơn hàng
                 </a>
-                <div class="dropdown-menu" style="background-color: #343a40">
-                    <a class="dropdown-item nav-link" href="<c:url value="/register/shipper"/>">Đăng ký shipper</a>
-                    <a class="dropdown-item nav-link" href="<c:url value="/shipper/auctions"/>">Đấu giá đơn hàng</a>
-                    <a class="dropdown-item nav-link" href="<c:url value="/shipper/received"/>">Đơn hàng đã nhận</a>
-                </div>
             </li>
+
             
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <li class="nav-item">

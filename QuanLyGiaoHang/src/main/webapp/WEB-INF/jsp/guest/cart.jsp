@@ -39,5 +39,5 @@
     <div>
         <h4 class="text-info">Tổng tiền hóa đơn: <span id="amountCart">${cartStats.amount}</span></h4>
     </div>
-    <input type="button" value="Thanh toán" class="btn btn-danger"/>
+        <button class="btn btn-danger"><a href="<c:url value="/payment"/>">Thanh toán</a></button>
 </c:if>

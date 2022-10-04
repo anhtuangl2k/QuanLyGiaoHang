@@ -6,7 +6,9 @@
 package com.tdd.repository;
 
 import com.tdd.pojos.Receipt;
+import java.util.List;
 
 public interface ReceiptResponsitory {
     boolean addReceipt(Receipt receipt);
+    List<Receipt> listReceiptOfGuest(int id);
 }

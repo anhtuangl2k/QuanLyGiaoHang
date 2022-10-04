@@ -35,6 +35,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Giỏ hàng"/>
         <put-attribute name="content" value="/WEB-INF/jsp/guest/cart.jsp"/>
     </definition>
+    <definition name="order" extends="baseLayout">
+        <put-attribute name="title" value="Đơn hàng"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/guest/order.jsp"/>
+    </definition>
 
 <!--============================= ADMIN =====================================--> 
     <definition name="baseAdminLayout" template="/WEB-INF/layout/adminbase.jsp">

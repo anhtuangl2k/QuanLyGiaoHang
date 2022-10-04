@@ -5,12 +5,16 @@
  */
 package com.tdd.utils;
 
+import com.tdd.pojos.Account;
 import com.tdd.pojos.Cart;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class Utils {
+    
+    public static Account ACCOUNT_LOGIN;
+    
     
     // Hàm đếm số lượng sản phẩm trong giỏ hàng
     public static int countCart(Map<Integer, Cart> cart){
@@ -35,4 +39,14 @@ public class Utils {
         kq.put("amount", String.valueOf(s));
         return kq;
     }
+    
+    public static Double amount(Map<Integer, Cart> cart){
+        double s = 0;
+        if(cart != null)
+            for(Cart c : cart.values()){
+                s+= c.getQuantity() * c.getPrice();
+            }
+        return s;
+    }
+
 }

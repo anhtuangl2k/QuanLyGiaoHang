@@ -6,7 +6,9 @@
 package com.tdd.service;
 
 import com.tdd.pojos.Receipt;
+import java.util.List;
 
 public interface ReceiptService {
     boolean addReceipt(Receipt receipt, String username);
+    List<Receipt> listReceiptOfGuest(int id);
 }

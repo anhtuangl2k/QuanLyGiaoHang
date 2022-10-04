@@ -5,8 +5,11 @@
  */
 package com.tdd.service;
 
+import com.tdd.pojos.Cart;
 import com.tdd.pojos.ReceiptProduct;
+import java.util.Map;
 
 public interface Receipt_ProductService {
     boolean addReceipt_Product(ReceiptProduct r) ;
+    boolean addProductInCartForReceipt(Map<Integer, Cart> cart);
 }

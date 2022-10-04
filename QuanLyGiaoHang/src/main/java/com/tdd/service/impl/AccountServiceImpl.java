@@ -8,6 +8,7 @@ package com.tdd.service.impl;
 import com.tdd.pojos.Account;
 import com.tdd.repository.AccountResponsitory;
 import com.tdd.service.AccountService;
+import com.tdd.utils.Utils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,6 +69,7 @@ public class AccountServiceImpl implements AccountService{
         Account a = accounts.get(0);
         Set<GrantedAuthority> auth = new HashSet<>();
         auth.add(new SimpleGrantedAuthority(a.getType().toString()));
+        Utils.ACCOUNT_LOGIN = a;       
         return new org.springframework.security.core.userdetails.User(a.getUsername(), a.getPassword(), auth);
     }
     

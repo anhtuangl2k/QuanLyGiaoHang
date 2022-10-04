@@ -54,7 +54,7 @@ public class ProductRepositoryImpl implements ProductRepository{
 
     @Override
     public List<Product> getListProduct(String kw, int page) {
-                Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Product> query = builder.createQuery(Product.class);
         Root root = query.from(Product.class);

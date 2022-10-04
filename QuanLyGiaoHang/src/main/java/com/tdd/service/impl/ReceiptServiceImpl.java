@@ -10,6 +10,7 @@ import com.tdd.pojos.Receipt;
 import com.tdd.repository.AccountResponsitory;
 import com.tdd.repository.ReceiptResponsitory;
 import com.tdd.service.ReceiptService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,11 @@ public class ReceiptServiceImpl implements ReceiptService{
             return this.receiptResponsitory.addReceipt(receipt);
         }     
         return false;
+    }
+
+    @Override
+    public List<Receipt> listReceiptOfGuest(int id) {
+        return this.receiptResponsitory.listReceiptOfGuest(id);
     }
     
 }
