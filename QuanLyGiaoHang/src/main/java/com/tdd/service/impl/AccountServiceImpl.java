@@ -72,6 +72,11 @@ public class AccountServiceImpl implements AccountService{
         Utils.ACCOUNT_LOGIN = a;       
         return new org.springframework.security.core.userdetails.User(a.getUsername(), a.getPassword(), auth);
     }
+
+    @Override
+    public List<Account> getAccounts(String username) {
+        return this.accountResponsitory.getAccounts(username);
+    }
     
     
 }

@@ -35,7 +35,12 @@
                     Đơn hàng
                 </a>
             </li>
-
+            
+            <li class="nav-item">
+                <a class="nav-link " href="<c:url value="/receive"/>">
+                    Nhận đơn
+                </a>
+            </li>
             
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <li class="nav-item">

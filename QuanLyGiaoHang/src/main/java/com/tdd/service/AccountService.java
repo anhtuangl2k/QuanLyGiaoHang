@@ -15,4 +15,5 @@ public interface AccountService extends UserDetailsService{
       List<Account> getListAccountShipper();
       Account getAccountByID(int id);
       boolean changeStatus(int id);
+      List<Account> getAccounts(String username);
 }

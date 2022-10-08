@@ -11,8 +11,12 @@ import com.tdd.pojos.Account;
 import com.tdd.pojos.Product;
 import com.tdd.service.AccountService;
 import com.tdd.service.ProductService;
+import com.tdd.service.ReceiptService;
 import com.tdd.validator.ProductValidator;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
@@ -36,6 +40,8 @@ public class AdminController {
     private AccountService accountService;
     @Autowired
     private ProductService productService;  
+    @Autowired
+    private  ReceiptService receiptService;
     @Autowired
     private ProductValidator productValidator;
     
@@ -75,14 +81,32 @@ public class AdminController {
     
     @PostMapping("/admin/product")
     public String productManager(Model model, @ModelAttribute(value = "product")@Valid Product product, BindingResult result) throws IOException{
-        if(!result.hasErrors()){
- 
-            
+        if(!result.hasErrors()){           
             if(this.productService.addOrUpdate(product))
                 model.addAttribute("successMsg", "Thêm sản phẩm thành công");
             else
                 model.addAttribute("errMsg", "Có lỗi xảy ra");
         }   
         return "product";
+    }
+    
+    @GetMapping("/admin/statistic")
+    public String statistic(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
+
+        String kw = params.getOrDefault("kw", null);
+
+        Date fromDate = null;
+//        String from = params.getOrDefault("fromDate", null);
+//        if(from!=null)
+//          fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(from);  ;
+        
+        Date toDate = null;
+//        String to = params.getOrDefault("toDate", null);
+//        if(to!=null)
+//            toDate = f.parse(to);
+  
+        model.addAttribute("productStats", this.receiptService.receiptStats(kw, fromDate, toDate));
+        
+        return "statistic";
     }
 }

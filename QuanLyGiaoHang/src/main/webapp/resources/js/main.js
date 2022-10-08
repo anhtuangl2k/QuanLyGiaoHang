@@ -61,3 +61,12 @@ function deleteCart(productId){
         row.style.display = "none";
     });
 }
+
+function changeStatusReceipt(id){
+    fetch(`/QuanLyGiaoHang/changeStatusReceipt/${id}`, {
+        method: 'get'
+        }).then(function (res){
+            location.reload();
+            return res.json();
+        });
+}

@@ -13,6 +13,9 @@ import com.tdd.repository.ReceiptResponsitory;
 import com.tdd.repository.Receipt_ProductResponsitory;
 import com.tdd.service.Receipt_ProductService;
 import com.tdd.utils.Utils;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,12 +38,13 @@ public class Receipt_ProductServiceImpl implements Receipt_ProductService{
     @Override
     public boolean addProductInCartForReceipt(Map<Integer, Cart> cart) {
         try {
-            System.out.println(Utils.ACCOUNT_LOGIN);
             if(Utils.ACCOUNT_LOGIN != null){
                 Receipt r = new Receipt();
                 r.setAmount(Utils.amount(cart));
                 r.setGuestID(Utils.ACCOUNT_LOGIN);
                 r.setStatus(Receipt.CHUA_GIAO);
+                LocalDate date = (LocalDate)java.time.LocalDate.now();
+                r.setDateTime( Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
                 if(this.receiptResponsitory.addReceipt(r)){
                     for(Cart c : cart.values()){
                         ReceiptProduct rp= new ReceiptProduct();

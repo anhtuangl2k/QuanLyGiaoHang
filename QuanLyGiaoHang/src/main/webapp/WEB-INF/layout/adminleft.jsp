@@ -31,6 +31,11 @@
             <a class="nav-link text-white" href="<c:url value="/admin/product"/>">Quản lý sản phẩm</a>
         </li>
         <hr/>
+        
+        <li class="nav-item">
+            <a class="nav-link text-white" href="<c:url value="/admin/statistic"/>">Thống kê</a>
+        </li>
+        <hr/>
 
     </ul>
 

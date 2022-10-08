@@ -5,7 +5,9 @@
  */
 package com.tdd.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -58,16 +60,20 @@ public class Receipt implements Serializable {
     @Column(name = "DateTime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
+    @JsonIgnore
     @JoinColumn(name = "Guest_ID", referencedColumnName = "ID")
     @ManyToOne
     private Account guestID;
+    @JsonIgnore
     @JoinColumn(name = "Shipper_ID", referencedColumnName = "ID")
     @ManyToOne
     private Account shipperID;
+    @JsonIgnore
     @OneToMany(mappedBy = "receiptID")
     private Collection<ReceiptProduct> receiptProductCollection;
 
     public Receipt() {
+        dateTime = new Date();
     }
 
     public Receipt(Integer id) {
