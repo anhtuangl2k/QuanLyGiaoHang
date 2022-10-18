@@ -16,4 +16,5 @@ public interface ReceiptService {
     Receipt getReceiptById(Integer id);
     boolean changeStatusReceipt(Integer id, Account a);
     List<Object[]> receiptStats(String kw, Date fromDate, Date toDate);
+    List<Object[]> receiptMonthStats(String kw, Date fromDate, Date toDate);
 }

@@ -14,6 +14,11 @@
         Đã có lỗi xảy ra!
     </div>
 </c:if>
+<c:if test="${param.accessDenied != null}l">
+    <div class="alert alert-danger">
+        Bạn ko có quyền truy cập
+    </div>
+</c:if>
 
 <form method="post" action="${action}">
   <!-- Email input -->

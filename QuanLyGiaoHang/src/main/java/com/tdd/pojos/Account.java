@@ -44,6 +44,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Account.findByCmnd", query = "SELECT a FROM Account a WHERE a.cmnd = :cmnd")})
 public class Account implements Serializable {
 
+    @OneToMany(mappedBy = "accountID")
+    private Collection<Comment> commentCollection;
+
     @OneToMany(mappedBy = "guestID")
     private Collection<Receipt> receiptCollection;
     @OneToMany(mappedBy = "shipperID")
@@ -247,6 +250,15 @@ public class Account implements Serializable {
 
     public void setReceiptCollection1(Collection<Receipt> receiptCollection1) {
         this.receiptCollection1 = receiptCollection1;
+    }
+
+    @XmlTransient
+    public Collection<Comment> getCommentCollection() {
+        return commentCollection;
+    }
+
+    public void setCommentCollection(Collection<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
     }
     
 }

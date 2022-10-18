@@ -18,4 +18,5 @@ public interface DiscountService {
     long countDiscount();
     Discount getDiscountByID(int ID);
     boolean deleteDiscount(int ID);
+    Discount getDiscountByCode(String code);
 }

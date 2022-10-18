@@ -74,8 +74,26 @@ public class AdminController {
     public String productManager(Model model, @RequestParam(required = false) Map<String, String> params){
         model.addAttribute("product", new Product());
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("products", this.productService.getListProduct(params.get("kw"), page));
+        
         model.addAttribute("counter", this.productService.countProduct());
+        System.out.println(params.get("id"));
+        
+        Integer id = null;
+        if(params.get("id") != null){
+            id = Integer.parseInt(params.get("id"));
+            Product p = this.productService.getProductByID(id);
+            p.setName(params.get("name"));
+            p.setPrice(Double.parseDouble(params.get("price")));
+            p.setAmount(Integer.parseInt(params.get("amount")));
+            if(this.productService.addOrUpdate(p)){
+                model.addAttribute("successMsg", "Cập nhật sản phẩm thành công");
+            }else
+            {
+                 model.addAttribute("errMsg", "Có lỗi xảy ra");
+            }
+        }
+        model.addAttribute("products", this.productService.getListProduct(params.getOrDefault("kw", ""), page));
+        
         return "product";
     }
     
@@ -92,21 +110,36 @@ public class AdminController {
     
     @GetMapping("/admin/statistic")
     public String statistic(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
-
         String kw = params.getOrDefault("kw", null);
 
         Date fromDate = null;
-//        String from = params.getOrDefault("fromDate", null);
-//        if(from!=null)
-//          fromDate = new SimpleDateFormat("dd/MM/yyyy").parse(from);  ;
+        String from = params.getOrDefault("fromDate", null);
+        if(from!=null && from != "")
+          fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(from);  
         
         Date toDate = null;
-//        String to = params.getOrDefault("toDate", null);
-//        if(to!=null)
-//            toDate = f.parse(to);
+        String to = params.getOrDefault("toDate", null);
+        if(to!=null && to != "")
+            toDate = new SimpleDateFormat("yyyy-MM-dd").parse(to);;
   
-        model.addAttribute("productStats", this.receiptService.receiptStats(kw, fromDate, toDate));
-        
+        model.addAttribute("productStats", this.receiptService.receiptStats(kw, fromDate, toDate));      
         return "statistic";
+    }
+    
+    @GetMapping("/admin/month-stats")
+    public String monthStats(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{
+        
+        Date fromDate = null;
+        String from = params.getOrDefault("fromDate", null);
+        if(from!=null && from != "")
+          fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(from);  
+        
+        Date toDate = null;
+        String to = params.getOrDefault("toDate", null);
+        if(to!=null && to != "")
+            toDate = new SimpleDateFormat("yyyy-MM-dd").parse(to);;
+             
+        model.addAttribute("productMonthStats", this.receiptService.receiptMonthStats(null, fromDate, toDate));    
+        return "month-stats";
     }
 }

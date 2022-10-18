@@ -7,8 +7,10 @@ package com.tdd.controllers;
 
 import com.tdd.pojos.Account;
 import com.tdd.pojos.Discount;
+import com.tdd.pojos.Product;
 import com.tdd.service.AccountService;
 import com.tdd.service.DiscountService;
+import com.tdd.service.ProductService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,22 @@ public class ApiController {
     private DiscountService discountService;
     @Autowired 
     private AccountService accountService;
+    @Autowired
+    private ProductService productService;
+    
+    @GetMapping(path = "/api/product/{ID}", produces = {
+        MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Product> getProduct(@PathVariable("ID") Integer ID){
+        return new ResponseEntity<>(this.productService.getProductByID(ID), HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/api/deleteProduct/{ID}")
+    public ResponseEntity<Product> deleteProduct(@PathVariable("ID") Integer ID){
+        if(this.productService.deleteProduct(ID)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);   
+    }
     
     @DeleteMapping("/api/deleteDiscount/{ID}")
     public ResponseEntity<Discount> deleteDiscount(@PathVariable("ID") Integer ID) {
@@ -49,7 +67,6 @@ public class ApiController {
     @GetMapping("/api/shipper")
     public ResponseEntity<List<Account>> listShipper() {
         List<Account> discounts = this.accountService.getListAccountShipper();
-
         return new ResponseEntity<>(discounts, HttpStatus.OK);
     }
     

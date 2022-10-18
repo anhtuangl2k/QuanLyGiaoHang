@@ -30,7 +30,7 @@ public class DiscountRepositoryImpl implements DiscountRepository{
     public boolean addOrUpdate(Discount discount) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
-            if(getDiscountByID(discount.getId()) == null)
+            if(discount.getId() == null)
                 session.save(discount);
             else
                 session.update(discount);
@@ -87,6 +87,26 @@ public class DiscountRepositoryImpl implements DiscountRepository{
             e.getMessage();
         }
         return false;
+    }
+
+    @Override
+    public Discount getDiscountByCode(String code) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Discount> query = builder.createQuery(Discount.class);
+        Root root = query.from(Discount.class);
+        query = query.select(root);
+        
+        Predicate p = builder.equal(root.get("code").as(String.class), 
+                    String.format("%s", code));
+        query = query.where(p);
+        
+        Query q = session.createQuery(query);
+        
+        if(q.getResultList().size() > 0)
+            return (Discount) q.getResultList().get(0);
+        
+        return null;
     }
     
 }

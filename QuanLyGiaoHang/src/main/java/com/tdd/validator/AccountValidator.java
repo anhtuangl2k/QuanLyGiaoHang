@@ -6,6 +6,8 @@
 package com.tdd.validator;
 
 import com.tdd.pojos.Account;
+import com.tdd.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -13,6 +15,9 @@ import org.springframework.validation.Validator;
 @Component
 public class AccountValidator implements Validator{
 
+    @Autowired
+    private AccountService accountService;
+    
     @Override
     public boolean supports(Class<?> clazz) {
         return Account.class.isAssignableFrom(clazz);
@@ -38,6 +43,10 @@ public class AccountValidator implements Validator{
         
         if(p.getType() == Account.SHIPPER && p.getFile().isEmpty()){
             errors.rejectValue("file", "account.avt.null");
+        }
+        
+        if(this.accountService.getAccounts(p.getUsername()) != null){
+            errors.rejectValue("username", "account.username.isHas");
         }
     }
     

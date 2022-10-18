@@ -6,7 +6,9 @@
 package com.tdd.controllers;
 
 import com.tdd.pojos.Cart;
+import com.tdd.pojos.Discount;
 import com.tdd.service.AccountService;
+import com.tdd.service.DiscountService;
 import com.tdd.service.Receipt_ProductService;
 import com.tdd.utils.Utils;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CartController {
@@ -26,6 +29,8 @@ public class CartController {
     private Receipt_ProductService receipt_ProductService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private DiscountService discountService;
     
     @ModelAttribute
     public void commonAttrs(Model model, HttpSession session){
@@ -34,14 +39,27 @@ public class CartController {
     
     
     @GetMapping("/cart")
-    public String cart(Model model, HttpSession session){
+    public String cart(Model model, HttpSession session, @RequestParam(required = false) Map<String, String> params){
         Map<Integer, Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
         if(cart != null)
             model.addAttribute("carts", cart.values());
         else
             model.addAttribute("carts", null);
         
-        model.addAttribute("cartStats", Utils.cartStats(cart));
+        String code = params.getOrDefault("discount", "");
+        if(code != ""){
+            Discount d = this.discountService.getDiscountByCode(code);
+            if(d != null){
+                model.addAttribute("cartStats", Utils.cartStats(cart, d));
+                model.addAttribute("msg", "Thêm mã giảm " + d.getMoneyReduce().toString() + "thành công" );
+                Utils.DISCOUNT = d;
+            }else{
+                model.addAttribute("cartStats", Utils.cartStats(cart, null));
+                model.addAttribute("msg", "Mã ko hợp lệ" );
+            }
+        }else{
+            model.addAttribute("cartStats", Utils.cartStats(cart, null));
+        }     
         return "cart";
     }
     
@@ -53,7 +71,7 @@ public class CartController {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();  
             Utils.ACCOUNT_LOGIN = this.accountService.getAccounts(authentication.getName()).get(0);
         }  
-        if(this.receipt_ProductService.addProductInCartForReceipt(cart)){
+        if(this.receipt_ProductService.addProductInCartForReceipt(cart, Utils.DISCOUNT)){
             model.addAttribute("msg", "Thanh toán thành công");
         }else
         {

@@ -33,7 +33,12 @@
         <hr/>
         
         <li class="nav-item">
-            <a class="nav-link text-white" href="<c:url value="/admin/statistic"/>">Thống kê</a>
+            <a class="nav-link text-white" href="<c:url value="/admin/statistic"/>">Thống kê doanh thu theo sản phẩm</a>
+        </li>
+        <hr/>
+        
+        <li class="nav-item">
+            <a class="nav-link text-white" href="<c:url value="/admin/month-stats"/>">Thống kê doanh thu theo tháng</a>
         </li>
         <hr/>
 

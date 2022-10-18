@@ -61,6 +61,7 @@
     </div>
   </div>
 </div> 
+
 <form action="">
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="Search" name="kw" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -89,7 +90,7 @@
           <td>${p.name}</td>
           <td>${p.price}</td>
           <td>${p.amount}</td>
-          <td><button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter2" onclick="getDiscount(${discount.id})">Sửa</button></td>
+          <td><button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenterUpdate" onclick="getProduct(${p.id})">Sửa</button></td>
           <td><button type="button" class="btn btn-danger" data-dismiss="modal" >Xóa</button></td>
         </tr>
       </c:forEach>
@@ -104,3 +105,41 @@
 
   </ul>
 </nav>
+
+<!-- Modal Update -->
+<div class="modal fade" id="exampleModalCenterUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="">
+            <div class="modal-body">
+                <input type="hidden" name="id" id="idProduct" class="form-control" />
+                <div class="form-group">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="name" id="nameProduct" class="form-control" />
+                </div>
+
+                  <div class="form-group">
+                      <label for="moneyReduce">Số tiền</label>
+                      <input type="number" name="price" id="priceProduct" class="form-control"/>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="moneyReduce">Số lượng</label>
+                      <input type="number" name="amount" id="amountProduct" class="form-control"/>
+                  </div>
+                  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+  </div>
+</div> 

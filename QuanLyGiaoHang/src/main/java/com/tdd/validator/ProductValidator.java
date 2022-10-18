@@ -6,13 +6,15 @@
 package com.tdd.validator;
 
 import com.tdd.pojos.Product;
+import com.tdd.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
 public class ProductValidator implements Validator{
-
+    
     @Override
     public boolean supports(Class<?> clazz) {
         return Product.class.isAssignableFrom(clazz);
@@ -36,6 +38,7 @@ public class ProductValidator implements Validator{
         if(p.getFile().isEmpty()){
             errors.rejectValue("file",  "product.file.null");
         }
+        
     }
     
 }

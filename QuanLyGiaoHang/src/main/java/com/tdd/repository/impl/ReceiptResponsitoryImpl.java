@@ -114,5 +114,42 @@ public class ReceiptResponsitoryImpl implements ReceiptResponsitory{
         Query q = session.createQuery(query);
         return q.getResultList();
     }
+
+    @Override
+    public List<Object[]> receiptMonthStats(String kw, Date fromDate, Date toDate) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        Root rootP = query.from(Product.class);
+        Root rootR = query.from(Receipt.class);
+        Root rootPR = query.from(ReceiptProduct.class);
+        
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(builder.equal(rootPR.get("productID"), rootP.get("id")));
+        predicates.add(builder.equal(rootPR.get("receiptID"), rootR.get("id")));
+        
+        query.multiselect(builder.function("MONTH", Integer.class, rootR.get("dateTime")),
+                builder.function("YEAR", Integer.class, rootR.get("dateTime")),
+                builder.sum(builder.prod(rootPR.get("price"), rootPR.get("quantity"))));
+        
+        if(kw != null && !kw.isEmpty()){
+            predicates.add(builder.like(rootP.get("name"), kw));
+        }
+        if(fromDate != null){
+            predicates.add(builder.greaterThanOrEqualTo(rootR.get("dateTime"), fromDate));
+        }
+        if(toDate != null){
+            predicates.add(builder.lessThanOrEqualTo(rootR.get("dateTime"), toDate));
+        }
+        
+
+        query.where(predicates.toArray(new Predicate[] {}));
+        
+        query.groupBy(builder.function("MONTH", Integer.class, rootR.get("dateTime")),
+                builder.function("YEAR", Integer.class, rootR.get("dateTime")));
+        
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
     
 }

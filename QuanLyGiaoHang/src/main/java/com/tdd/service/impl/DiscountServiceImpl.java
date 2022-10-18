@@ -44,5 +44,10 @@ public class DiscountServiceImpl implements DiscountService{
     public boolean deleteDiscount(int ID) {
         return this.discountRepository.deleteDiscount(ID);
     }
+
+    @Override
+    public Discount getDiscountByCode(String code) {
+        return this.discountRepository.getDiscountByCode(code);
+    }
     
 }

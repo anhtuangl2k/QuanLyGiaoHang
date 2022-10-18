@@ -44,11 +44,12 @@
             </div>
         </div>
         <script src="<c:url value="/js/stats.js"/>"></script>
+        <script src="<c:url value="/js/main.js"/>"></script>
     </body>
     <footer class="text-center">
         <tiles:insertAttribute name="footer"/>
     </footer>
-    
+
 
     
 </html>

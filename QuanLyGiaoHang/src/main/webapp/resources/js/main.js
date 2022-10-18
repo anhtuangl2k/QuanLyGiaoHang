@@ -70,3 +70,48 @@ function changeStatusReceipt(id){
             return res.json();
         });
 }
+
+function getProduct(productId){
+    fetch(`/QuanLyGiaoHang/api/product/${productId}`, {
+    method: 'get'
+    }).then(function (res){
+        return res.json();
+    }).then(function (data){
+        let id = document.getElementById("idProduct");
+        id.value = data.id;
+        let name = document.getElementById("nameProduct");
+        name.value = data.name;
+        let price = document.getElementById("priceProduct");
+        price.value = data.price;
+        let amount = document.getElementById("amountProduct");
+        amount.value = data.amount;
+    });
+}
+
+function addComment(receiptID){
+    fetch("/QuanLyGiaoHang/api/add-comment", {
+        method: 'post',
+        body : JSON.stringify({
+            "content" : document.getElementById("commentID").value,
+            "receiptID" : receiptID
+        }),
+        headers: {
+            "Content-Type" : "application/json"
+        }
+    }).then(function (res){
+        return res.json();
+    }).then (function  (data) {
+        let area = document.getElementById("commentArea");
+        area.innerHTML = `
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="rounded-circle" src="" />
+                </div>
+                <div class="col-md-10 mydate">
+                    <p>${data.content}</p>
+                    <i>${moment(data.dateTime).fromNow()}</i>
+                </div>
+            </div>
+    ` + area.innerHTML  ;
+    });
+}

@@ -36,6 +36,19 @@
 
         </c:forEach>
     </table>
+<form action="">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Nhập khuyến mãi" name="discount"  aria-describedby="basic-addon2">
+      <div class="input-group-append">
+          <input type="submit" value="Chọn" class="btn-primary">
+      </div>
+    </div>
+</form>
+    
+<c:if test="${msg != null}">
+    <h6 class="text-danger">${msg}</h6>
+</c:if>
+    
     <div>
         <h4 class="text-info">Tổng tiền hóa đơn: <span id="amountCart">${cartStats.amount}</span></h4>
     </div>

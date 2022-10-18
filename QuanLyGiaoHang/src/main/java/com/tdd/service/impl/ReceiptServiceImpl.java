@@ -68,5 +68,10 @@ public class ReceiptServiceImpl implements ReceiptService{
     public List<Object[]> receiptStats(String kw, Date fromDate, Date toDate) {
         return this.receiptResponsitory.receiptStats(kw, fromDate, toDate);
     }
+
+    @Override
+    public List<Object[]> receiptMonthStats(String kw, Date formDate, Date toDate) {
+        return this.receiptResponsitory.receiptMonthStats(kw, formDate, toDate);
+    }
     
 }

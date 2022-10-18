@@ -52,4 +52,11 @@ public class ReceiptController {
         return "receive";
     }
     
+    @GetMapping("/receive/{ID}")
+    public String detail(Model model, @PathVariable(value="ID") int ID){
+        model.addAttribute("receipt", this.receiptService.getReceiptById(ID));
+        System.out.println(this.receiptService.getReceiptById(ID).getCommentCollection());
+        return "receive-details";
+    }
+    
 }

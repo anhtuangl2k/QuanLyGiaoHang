@@ -28,11 +28,12 @@ public class ProductServiceImpl implements ProductService{
     
     @Override
     public boolean addOrUpdate(Product product) {
-        try { 
-            Map r = this.cloudinary.uploader().upload(product.getFile().getBytes(),
-                    ObjectUtils.asMap("resource_type", "auto"));
-            product.setImage((String) r.get("secure_url"));
-            System.out.println((String) r.get("secure_url"));
+        try {
+            if(product.getId() == null){
+                Map r = this.cloudinary.uploader().upload(product.getFile().getBytes(),
+                ObjectUtils.asMap("resource_type", "auto"));
+                product.setImage((String) r.get("secure_url"));
+            }
             return this.productRepository.addOrUpdate(product);
         } catch (IOException ex) {
             Logger.getLogger(ProductServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,6 +54,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public long countProduct() {
         return this.productRepository.countProduct();
+    }
+
+    @Override
+    public boolean deleteProduct(int id) {
+        return this.productRepository.deleteProduct(id);
     }
     
 }

@@ -39,6 +39,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Đơn hàng"/>
         <put-attribute name="content" value="/WEB-INF/jsp/guest/order.jsp"/>
     </definition>
+    <definition name="receive-details" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết đơn hàng"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/guest/receive-details.jsp"/>
+    </definition>
 <!--============================= SHIPPER =====================================--> 
     <definition name="receive" extends="baseLayout">
         <put-attribute name="title" value="Nhận đơn"/>
@@ -74,6 +78,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="statistic" extends="baseAdminLayout">
         <put-attribute name="title" value="Thống kê"/>
         <put-attribute name="content" value="/WEB-INF/jsp/admin/statistic.jsp"/>
+    </definition>
+    
+    <definition name="month-stats" extends="baseAdminLayout">
+        <put-attribute name="title" value="Thống kê doanh thu theo tháng"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/receipt-month-stats.jsp"/>
     </definition>
     
 </tiles-definitions>

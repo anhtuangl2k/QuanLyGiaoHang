@@ -68,7 +68,7 @@ public class AccountServiceImpl implements AccountService{
             throw new UsernameNotFoundException("Tài khoản không tồn tại");
         Account a = accounts.get(0);
         Set<GrantedAuthority> auth = new HashSet<>();
-        auth.add(new SimpleGrantedAuthority(a.getType().toString()));
+        auth.add(new SimpleGrantedAuthority(a.getType().toString()));     
         Utils.ACCOUNT_LOGIN = a;       
         return new org.springframework.security.core.userdetails.User(a.getUsername(), a.getPassword(), auth);
     }

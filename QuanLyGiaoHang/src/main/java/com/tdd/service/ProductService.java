@@ -13,4 +13,5 @@ public interface ProductService {
     Product getProductByID(int ID);
     List<Product> getListProduct(String kw, int page);
     long countProduct();
+    boolean deleteProduct(int id);
 }

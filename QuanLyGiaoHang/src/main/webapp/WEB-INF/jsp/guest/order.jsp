@@ -19,7 +19,9 @@
           <td>${r.dateTime}</td>
           <td>${r.amount}</td>
           <td>${r.status}</td>
-          <td><button type="button" class="btn btn-danger" data-dismiss="modal" >Xem chi tiết</button></td>
+          <td>
+              <a href="<c:url value="/receive/${r.id}"/>"><button type="button" class="btn btn-danger" data-dismiss="modal" >Xem chi tiết</button></a>
+          </td>
         </tr>
     </c:forEach>
   </tbody>

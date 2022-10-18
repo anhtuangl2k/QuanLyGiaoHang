@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -52,30 +53,27 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");
 
-        http.formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
-//        http.formLogin().successHandler(this.loginSuccessHandler);
-//
-////        http.logout().logoutSuccessUrl("/login");
-//        http.logout().logoutSuccessHandler(this.logoutHandler);
-//
-//        http.exceptionHandling()
-//                .accessDeniedPage("/login?accessDenied");
-//
-//        http.authorizeRequests().antMatchers("/").permitAll()
+        http.formLogin().defaultSuccessUrl("/").failureUrl("/login?error");
+        http.formLogin().successHandler(this.loginSuccessHandler);
+
+//        http.logout().logoutSuccessUrl("/login");
+        http.logout().logoutSuccessHandler(this.logoutHandler);
+        http.exceptionHandling()
+                .accessDeniedPage("/login?accessDenied");
+
+        http.authorizeRequests().antMatchers("/").permitAll()
 //                .antMatchers("/order/**")
 //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 //                .antMatchers("/register/shipper")
 //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_SHIPPER')")
 //                .antMatchers("/shipper/**")
 //                .access("hasAnyRole('ROLE_SHIPPER', 'ROLE_ADMIN')")
-//                .antMatchers("/admin/**")
-//                .access("hasRole( 'ROLE_ADMIN')");
-//
+                .antMatchers("/admin/**").access("hasRole('1')");
         http.csrf().disable();
     }
     

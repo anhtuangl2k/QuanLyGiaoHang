@@ -51,7 +51,7 @@ public class ApiCartController {
             c.setQuantity(params.getQuantity());
         }
         session.setAttribute("cart", cart);
-        return new ResponseEntity<>(Utils.cartStats(cart), HttpStatus.OK);   
+        return new ResponseEntity<>(Utils.cartStats(cart, null), HttpStatus.OK);   
     }
     
     @DeleteMapping("/api/cart/{productId}")
@@ -61,6 +61,6 @@ public class ApiCartController {
             cart.remove(productId);
             session.setAttribute("cart", cart);
         }
-        return new ResponseEntity<>(Utils.cartStats(cart), HttpStatus.OK);   
+        return new ResponseEntity<>(Utils.cartStats(cart, null), HttpStatus.OK);   
     }
 }

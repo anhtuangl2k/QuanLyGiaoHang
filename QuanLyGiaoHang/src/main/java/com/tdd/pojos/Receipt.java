@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,6 +41,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Receipt.findByAmount", query = "SELECT r FROM Receipt r WHERE r.amount = :amount"),
     @NamedQuery(name = "Receipt.findByDateTime", query = "SELECT r FROM Receipt r WHERE r.dateTime = :dateTime")})
 public class Receipt implements Serializable {
+
+    @OneToMany(mappedBy = "receiptsID", fetch = FetchType.EAGER)
+    private Collection<Comment> commentCollection;
+
+    @JoinColumn(name = "Discount_ID", referencedColumnName = "ID")
+    @ManyToOne
+    private Discount discountID;
 
     public static int CHUA_GIAO = 0;
     public static int DANG_GIAO = 1;
@@ -160,6 +168,23 @@ public class Receipt implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Discount getDiscountID() {
+        return discountID;
+    }
+
+    public void setDiscountID(Discount discountID) {
+        this.discountID = discountID;
+    }
+
+    @XmlTransient
+    public Collection<Comment> getCommentCollection() {
+        return commentCollection;
+    }
+
+    public void setCommentCollection(Collection<Comment> commentCollection) {
+        this.commentCollection = commentCollection;
     }
     
 }

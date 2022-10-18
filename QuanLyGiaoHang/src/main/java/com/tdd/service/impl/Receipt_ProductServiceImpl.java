@@ -6,6 +6,7 @@
 package com.tdd.service.impl;
 
 import com.tdd.pojos.Cart;
+import com.tdd.pojos.Discount;
 import com.tdd.pojos.Receipt;
 import com.tdd.pojos.ReceiptProduct;
 import com.tdd.repository.ProductRepository;
@@ -36,13 +37,17 @@ public class Receipt_ProductServiceImpl implements Receipt_ProductService{
     }
 
     @Override
-    public boolean addProductInCartForReceipt(Map<Integer, Cart> cart) {
+    public boolean addProductInCartForReceipt(Map<Integer, Cart> cart, Discount d) {
         try {
             if(Utils.ACCOUNT_LOGIN != null){
                 Receipt r = new Receipt();
                 r.setAmount(Utils.amount(cart));
                 r.setGuestID(Utils.ACCOUNT_LOGIN);
                 r.setStatus(Receipt.CHUA_GIAO);
+                if(d != null){
+                    r.setDiscountID(d);
+                    Utils.DISCOUNT = null;
+                }               
                 LocalDate date = (LocalDate)java.time.LocalDate.now();
                 r.setDateTime( Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
                 if(this.receiptResponsitory.addReceipt(r)){

@@ -5,6 +5,7 @@
  */
 package com.tdd.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -39,8 +40,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class Product implements Serializable {
 
     @OneToMany(mappedBy = "productID")
+    @JsonIgnore
     private Collection<ReceiptProduct> receiptProductCollection;
-
+    @JsonIgnore
     @Size(max = 200)
     @Column(name = "Image")
     private String image;
@@ -59,7 +61,7 @@ public class Product implements Serializable {
     private Double price;
     @Column(name = "Amount")
     private Integer amount;
-
+    @JsonIgnore
     @Transient
     private MultipartFile file;
     

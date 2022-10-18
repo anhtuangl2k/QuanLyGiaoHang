@@ -15,4 +15,5 @@ public interface ReceiptResponsitory {
     Receipt getReceiptById(Integer id);
     boolean updateReceipt(Receipt r);
     List<Object[]> receiptStats(String kw, Date fromDate, Date toDate);
+    List<Object[]> receiptMonthStats(String kw, Date fromDate, Date toDate);
 }

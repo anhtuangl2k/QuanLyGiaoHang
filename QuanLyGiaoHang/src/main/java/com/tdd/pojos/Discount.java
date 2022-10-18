@@ -6,6 +6,7 @@
 package com.tdd.pojos;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,6 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Discount.findByCode", query = "SELECT d FROM Discount d WHERE d.code = :code"),
     @NamedQuery(name = "Discount.findByMoneyReduce", query = "SELECT d FROM Discount d WHERE d.moneyReduce = :moneyReduce")})
 public class Discount implements Serializable {
+
+    @OneToMany(mappedBy = "discountID")
+    private Collection<Receipt> receiptCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -111,6 +117,15 @@ public class Discount implements Serializable {
     @Override
     public String toString() {
         return "com.tdd.pojos.Discount[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Receipt> getReceiptCollection() {
+        return receiptCollection;
+    }
+
+    public void setReceiptCollection(Collection<Receipt> receiptCollection) {
+        this.receiptCollection = receiptCollection;
     }
     
 }

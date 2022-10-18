@@ -61,7 +61,6 @@ public class ProductRepositoryImpl implements ProductRepository{
         query = query.select(root);
         
         if(!kw.isEmpty() && kw != null){
-            System.out.println(kw);
             Predicate p = builder.like(root.get("name").as(String.class), 
                     String.format("%%%s%%", kw));
             query = query.where(p);
@@ -80,6 +79,19 @@ public class ProductRepositoryImpl implements ProductRepository{
         Session session = this.sessionFactory.getObject().getCurrentSession();
         org.hibernate.query.Query q = session.createQuery("Select Count(*) From Product");        
         return Long.parseLong(q.getSingleResult().toString());
+    }
+
+    @Override
+    public boolean deleteProduct(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Product p = getProductByID(id);
+            session.remove(p);
+            return true;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return false;
     }
     
 }
