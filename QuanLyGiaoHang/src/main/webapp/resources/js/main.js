@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-function addToCart(id, name, price){
+function addToCart(id, name, price, image){
     event.preventDefault();
     fetch("/QuanLyGiaoHang/api/cart", {
         method: 'post',
@@ -11,7 +11,8 @@ function addToCart(id, name, price){
             "productId": id,
             "productName": name , 
             "price": price,
-            "quantity": 1 
+            "quantity": 1, 
+            "image" : image
         }),
         headers: {
             "Content-Type" : "application/json"
@@ -19,8 +20,9 @@ function addToCart(id, name, price){
     }).then(function (res){
         return res.json();
     }).then (function  (data) {
+       
         let counter = document.getElementById("cartCounter");
-        counter.innerText = data;
+        counter.innerText = data + " items";
     });
 }
 

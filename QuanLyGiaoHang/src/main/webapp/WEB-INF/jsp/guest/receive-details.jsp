@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+  
+        
+        
 <form class="form-group">  
     <textarea class="form-control" placeholder="Nhập bình luận" id="commentID"></textarea>
     <br>

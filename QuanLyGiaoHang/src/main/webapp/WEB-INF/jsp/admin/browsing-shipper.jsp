@@ -1,7 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${successMsg != null}">
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="card-body">
+                <c:if test="${successMsg != null}">
     <div class="alert alert-success">${successMsg}</div>
 </c:if>
 
@@ -24,10 +28,14 @@
           <td>${account.gmail}</td>
           <td>${account.phone}</td>
           <td>${account.cmnd}</td>
-          <td><button type="button" class="btn btn-success" data-dismiss="modal">  <a href="<c:url value="/admin/changeStatus/${account.id}"/>">Duyệt</a></button></td>
+          <td><button type="button" class="btn btn-success" data-dismiss="modal">  <a style="color: black" href="<c:url value="/admin/changeStatus/${account.id}"/>">Duyệt</a></button></td>
         </tr>
 
         </c:forEach>
        
     </tbody>
 </table>
+        </div>
+    </section>
+
+</div>

@@ -18,9 +18,17 @@
           <th scope="row">${r.id}</th>
           <td>${r.dateTime}</td>
           <td>${r.amount}</td>
-          <td>${r.status}</td>
+          <c:if test="${r.status == 0}">
+              <td style="color: red">Chưa giao</td>
+          </c:if>
+        <c:if test="${r.status == 1}">
+            <td>Đang giao</td>
+          </c:if>
+        <c:if test="${r.status == 2}">
+            <td style="color: green">Giao thành công</td>
+          </c:if>
           <td>
-              <a href="<c:url value="/receive/${r.id}"/>"><button type="button" class="btn btn-danger" data-dismiss="modal" >Xem chi tiết</button></a>
+              <a href="<c:url value="/orderdetail?id=${r.id}"/>"><button type="button" class="btn btn-danger" data-dismiss="modal" >Xem chi tiết</button></a>
           </td>
         </tr>
     </c:forEach>

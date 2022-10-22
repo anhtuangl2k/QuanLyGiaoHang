@@ -23,7 +23,7 @@
               <td> <button type="button" class="btn btn-danger" data-dismiss="modal" id="receive${r.id}" onclick="changeStatusReceipt(${r.id})">Nhận đơn</button></td>
           </c:if>
             <c:if test="${r.status == 1}">
-              <td><a href="""> <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="changeStatusReceipt(${r.id})" >Đã giao</button></a></td>
+              <td><a href="""> <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="changeStatusReceipt(${r.id})" >Đang giao</button></a></td>
           </c:if>
         <c:if test="${r.status == 2}">
               <td>Giao thành công</td>

@@ -1,8 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>THỐNG KÊ DOANH THU THEO SẢN PHẨM</h1>
 
-<form action="">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="card-body">
+            <h1>THỐNG KÊ DOANH THU THEO SẢN PHẨM</h1>
+            <form action="">
     <div class="form-group">
         <label>Từ khóa</label>
         <input type="text" name="kw" class="form-control" />
@@ -38,6 +41,11 @@
         
     </c:forEach>
 </table>
+        </div>
+    </section>
+
+</div>
+
 
 <script>
     let productLabels = [], productInfo = [];

@@ -19,10 +19,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Trang chủ"/>
         <put-attribute name="content" value="/WEB-INF/jsp/guest/index.jsp"/>
     </definition>
-     <definition name="login" extends="baseLayout">
-        <put-attribute name="title" value="Đăng nhập"/>
-        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
-    </definition>
+     <definition name="login" template="/WEB-INF/jsp/login.jsp" />
     <definition name="signup" extends="baseLayout">
         <put-attribute name="title" value="Đăng ký"/>
         <put-attribute name="content" value="/WEB-INF/jsp/signup.jsp"/>
@@ -52,6 +49,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
 <!--============================= ADMIN =====================================--> 
     <definition name="baseAdminLayout" template="/WEB-INF/layout/adminbase.jsp">
         <put-attribute name="title" value="Quản trị hệ thống quản lý giao hàng"/>
+        <put-attribute name="header" value="/WEB-INF/layout/adminheader.jsp"/>
         <put-attribute name="left" value="/WEB-INF/layout/adminleft.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/layout/adminfooter.jsp"/>
         <put-attribute name="content" value="base"/>

@@ -34,6 +34,7 @@ public class ApiCartController {
             Cart c = cart.get(productId);
             c.setQuantity(c.getQuantity() + 1);
         }else{ // sản phẩm chưa có trong giỏ
+            System.out.println(params.getImage());
             cart.put(productId, params);
         }       
         session.setAttribute("cart", cart);       

@@ -12,45 +12,80 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">     
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->  
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="<c:url value="resources/assets/plugins/font-awesome/css/font-awesome.min.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/plugins/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="<c:url value="resources/assets/pages/css/animate.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/plugins/fancybox/source/jquery.fancybox.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/plugins/owl.carousel/assets/owl.carousel.css"/>" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="<c:url value="resources/assets/pages/css/components.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/pages/css/slider.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/pages/css/style-shop.css"/>" rel="stylesheet" type="text/css">
+  <link href="<c:url value="resources/assets/corporate/css/style.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/corporate/css/style-responsive.css"/>" rel="stylesheet">
+  <link href="<c:url value="resources/assets/corporate/css/themes/red.css"/>" rel="stylesheet" id="style-color">
+  <link href="<c:url value="resources/assets/corporate/css/custom.css"/>" rel="stylesheet">
+     
+
         
         
-        
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.map"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
         
 
         
         <title><tiles:insertAttribute name="title"/></title>
     </head>
-    <body>
-        <div class="container">
+    <body class="ecommerce">
             <tiles:insertAttribute name="header" />
 
             <tiles:insertAttribute name="content" />
 
             <tiles:insertAttribute name="footer" />
-        </div>
+            
+      <script src="<c:url value="resources/assets/plugins/jquery.min.js"/>" type="text/javascript"></script>
+  <script src="<c:url value="resources/assets/plugins/jquery-migrate.min.js"/>" type="text/javascript"></script>
+  <script src="<c:url value="resources/assets/plugins/bootstrap/js/bootstrap.min.js"/>" type="text/javascript"></script>      
+  <script src="<c:url value="resources/assets/corporate/scripts/back-to-top.js"/>" type="text/javascript"></script>
+  <script src="<c:url value="resources/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.j"/>s" type="text/javascript"></script>
+     END CORE PLUGINS 
+
+     BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) 
+    <script src="<c:url value="resources/assets/plugins/fancybox/source/jquery.fancybox.pack.js"/>" type="text/javascript"></script> pop up 
+    <script src="<c:url value="resources/assets/plugins/owl.carousel/owl.carousel.min.js"/>" type="text/javascript"></script> slider for products 
+    <script src='<c:url value="resources/assets/plugins/zoom/jquery.zoom.min.js"/>' type="text/javascript"></script> product zoom 
+    <script src="<c:url value="resources/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js"/>" type="text/javascript"></script> Quantity 
+
+    <script src="<c:url value="resources/assets/corporate/scripts/layout.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="resources/assets/pages/scripts/bs-carousel.js"/>" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();    
+            Layout.initOWL();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initTwitter();
+        });
+    </script>        
+    
         <script src="<c:url value="/js/main.js"/>"></script>
+        
+        
+        
     </body>
+    
+    
+    
+    
 </html>

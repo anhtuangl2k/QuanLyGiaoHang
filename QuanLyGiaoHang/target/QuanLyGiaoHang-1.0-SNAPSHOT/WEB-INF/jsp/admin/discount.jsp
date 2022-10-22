@@ -8,117 +8,181 @@
     <div class="alert alert-success">${successMsg}</div>
 </c:if>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
-  Thêm khuyến mãi
-</button>
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Discount Manage</h1>
+                </div>
 
-<!-- Modal Add -->
-<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form:form method="post" action="${action}" modelAttribute="discount">
-            <div class="modal-body">
-
-                  <div class="form-group">
-                      <label for="content">Chương trình khuyến mãi</label>
-                      <form:input type="text"  path="content" cssClass="form-control"/>
-                      <form:errors path="content" cssClass="alert alert-danger" element="div" />
-                  </div>
-
-                  <div class="form-group">
-                      <label for="moneyReduce">Số tiền khuyến mãi</label>
-                      <form:input type="number" path="moneyReduce" cssClass="form-control"/>
-                      <form:errors path="moneyReduce" cssClass="alert alert-danger" element="div" />
-                  </div>
+                <!-- Search -->
+                <div class="col-sm-5">
+                    <form>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" name="kw" type="search" placeholder="Search" aria-label="Search" >
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div >
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg-add">Add Discount</button>
+                </div>
 
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <input type="submit" value="Thêm khuyến mãi" class="btn btn-primary"/>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- ======================================form add========================================== -->
+    <div class="modal fade" id="modal-lg-add">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Discount</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form:form action="${action}" method="POST" modelAttribute="discount">  
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label for="name">Chương trình khuyến mãi</label>
+                            <form:input type="text" class="form-control" path="content" placeholder="Promontion"/>
+                            <form:errors path="content" cssClass="text-danger" element="div"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Số tiền giảm</label>
+                            <form:input type="number" class="form-control" path="moneyReduce" placeholder="Percent"/>
+                            <form:errors path="moneyReduce" cssClass="text-danger" element="div"/>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save"  id="randomcode" />
+                    </div>
+                </form:form> 
             </div>
-        </form:form>
+        </div>
     </div>
-  </div>
-</div> 
+
+    <section class="content">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6"></div>
+                    <div class="col-sm-12 col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                               aria-describedby="example2_info">
+                            <thead style="text-align: center">
+                                <tr role="row">             
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1">
+                                        Code</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1">
+                                        Content</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1">
+                                        Money Reduce</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
+                                        Delete</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
+                                        Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="d" items="${discounts}">
+                                    <tr role="row" class="odd">
+                                        <td class="col-sm-2">${d.code}</td>
+                                        <td class="col-sm-4">${d.content}</td>
+                                        <td>${d.moneyReduce}</td>
+                                        <td style="padding: 5px" class="col-sm-2">
+
+                                            <button type="button"
+                                                    class="btn btn-block bg-gradient-danger">Delete</button>
+
+                                        <td style="padding: 5px" class="col-sm-2">
+                                            <button type="button"
+                                                    class="btn btn-block bg-gradient-primary" 
+                                                    data-target="#modal-lg-update" 
+                                                    data-toggle="modal"
+                                                    onclick="getDiscount(${discount.id})">Update</button>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"></div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            <ul class="pagination">
+
+
+                                <c:forEach begin="1" end="${Math.ceil(counter/6)}" var="i">   
+                                    <li class="paginate_button page-item active" ><a class="page-link"  href="<c:url value="/admin/discount"/>?page=${i}">${i}</a></li>                                            
+                                    </c:forEach>
 
 
 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Chương trình khuyễn mãi</th>
-      <th scope="col">CODE</th>
-      <th scope="col">Số tiền giảm</th>
-      <th scope="col">Sửa</th>
-      <th scope="col">Xóa</th>
-    </tr>
-  </thead>
-  <tbody>
-      <c:forEach var="discount" items="${discounts}">
-        <tr>
-          <th scope="row">${discount.id}</th>
-          <td>${discount.content}</td>
-          <td>${discount.code}</td>
-          <td>${discount.moneyReduce}</td>
-          <td><button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter2" onclick="getDiscount(${discount.id})">Sửa</button></td>
-          <td><button type="button" class="btn btn-danger" data-dismiss="modal" >Xóa</button></td>
-        </tr>
-      </c:forEach>
-  </tbody>
-</table>
-
-<!-- Pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <c:forEach begin="1" end="${Math.ceil(counter/6)}" var="i">
-          <li class="page-item"><a class="page-link" href="<c:url value="/admin/discount"/>?page=${i} ">${i}</a></li>
-      </c:forEach> 
-  </ul>
-</nav>
+            </div>
+        </div>
+    </section>    
+</div>    
     
-<!-- Modal Update -->
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form>
-            <div class="modal-body">
+    
+    <div class="modal fade" id="modal-lg-update">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Discount</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" method="POST" >  
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label for="name">Chương trình khuyến mãi</label>
+                            <input type="text" class="form-control"  id="contentUpdate" path="content" placeholder="Promontion"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Số tiền giảm</label>
+                            <input type="number" class="form-control" path="moneyReduce" id="moneyReduceUpdate" placeholder="Percent"/>
+                        </div>
+                        
+                    </div>
 
-                  <div class="form-group">
-                      <label for="content">Chương trình khuyến mãi</label>
-                      <input type="text" id="contentUpdate"  class="form-control"/>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="moneyReduce">Số tiền khuyến mãi</label>
-                      <input type="number" id="moneyReduceUpdate"  class="form-control"/>
-                  </div>
-
-                  <div class="form-group">
-                      
-                  </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save"  id="randomcode" />
+                    </div>
+                <form> 
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <input type="submit" value="Thêm khuyến mãi" class="btn btn-primary"/>
-            </div>
-        </form>
+        </div>
     </div>
-  </div>
-</div> 
-
+    
 <script src="<c:url value="/js/discount.js"/>"></script>

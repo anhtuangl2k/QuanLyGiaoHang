@@ -2,36 +2,49 @@
 
 <c:url value="/sell-Product" var="action"/>
 
-<form action="">
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" name="kw" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-      <input type="submit" value="Search" class="btn-primary">
-  </div>
-</div>
-</form>
+ <div class="main">
+      <div class="container">
 
-<div class="row">
-    <c:forEach var="p" items="${products}">
-        <div class="card col-md-4" >
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
 
-            <div class="card-body">
-                <img class="card-img-top" src="${p.image}" alt="Card image cap">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+
+            <!-- BEGIN PRODUCT LIST -->
+            <div class="row product-list">
+              <!-- PRODUCT ITEM START -->
+              <c:forEach var="p" items="${products}">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                      <img src="${p.image}" class="img-responsive" style="height: 200px !important" alt="Berry Lace Dress">
+
+                  </div>
+                  <h3><a href="shop-item.html">${p.name}</a></h3>
+                  <div class="pi-price">${p.price}</div>
+                  <a href="javascript:;" class="btn btn-default add2cart" onclick="addToCart(${p.id}, '${p.name}', ${p.price}, '${p.image}')">Add to cart</a>
+                </div>
+              </div>
+                </c:forEach>
+              <!-- PRODUCT ITEM END -->
+
             </div>
-            <div class="card-footer">
-                <h5 class="card-title">${p.name}</h5>
-                <p class="card-text">${p.price}</p>
-                <a class="btn btn-primary" onclick="addToCart(${p.id}, '${p.name}', ${p.price})">Mua</a>
+            <!-- END PRODUCT LIST -->
+            <!-- BEGIN PAGINATOR -->
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <ul class="pagination pull-right">
+                    <c:forEach begin="1" end="${Math.ceil(counter/12)}" var="i">
+                         <li><a href="<c:url value="/sell-Product"/>?page=${i}">${i}</a></li>
+                    </c:forEach>
+                </ul>
+              </div>
             </div>
+            <!-- END PAGINATOR -->
+          </div>
+          <!-- END CONTENT -->
         </div>
-    </c:forEach>
-</div>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-      <c:forEach begin="1" end="${Math.ceil(counter/12)}" var="i">
-          <li class="page-item"><a class="page-link" href="<c:url value="/sell-Product"/>?page=${i}">${i}</a></li>
-      </c:forEach>
-
-  </ul>
-</nav>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>

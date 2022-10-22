@@ -10,6 +10,7 @@ import com.tdd.service.AccountService;
 import com.tdd.service.ReceiptService;
 import com.tdd.utils.Utils;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReceiptController {
@@ -52,10 +55,11 @@ public class ReceiptController {
         return "receive";
     }
     
-    @GetMapping("/receive/{ID}")
-    public String detail(Model model, @PathVariable(value="ID") int ID){
-        model.addAttribute("receipt", this.receiptService.getReceiptById(ID));
-        System.out.println(this.receiptService.getReceiptById(ID).getCommentCollection());
+    @GetMapping("/orderdetail")
+    public String detail(Model model, @RequestParam(required = false) Map<String, String> params){
+        Integer id = Integer.parseInt( params.get("id"));
+        model.addAttribute("receipt", this.receiptService.getReceiptById(id));
+        System.out.println(this.receiptService.getReceiptById(id).getCommentCollection());
         return "receive-details";
     }
     

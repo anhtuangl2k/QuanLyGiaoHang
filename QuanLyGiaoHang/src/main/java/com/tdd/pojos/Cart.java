@@ -10,7 +10,8 @@ public class Cart {
     private String productName;
     private Double price;
     private int quantity;
-
+    private String image;
+    
     /**
      * @return the productId
      */
@@ -65,6 +66,20 @@ public class Cart {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
     
     

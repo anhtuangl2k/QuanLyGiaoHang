@@ -1,9 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>THỐNG KÊ DOANH THU THEO THÁNG</h1>
 
 
-<form action="">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="card-body">
+            <h1>THỐNG KÊ DOANH THU THEO THÁNG</h1>
+            <form action="">
     <div class="form-group">
         <label>Từ thời điểm</label>
         <input type="date" name="fromDate" class="form-control" />
@@ -34,6 +37,10 @@
         
     </c:forEach>
 </table>
+        </div>
+    </section>
+</div>
+
 
 <script>
     let productLabels = [], productInfo = [];
@@ -44,6 +51,6 @@
     </c:forEach>
     
     window.onload = function (){
-        productChart("myProductMonthStatsChart", productLabels, productInfo);
+        productMonthChart("myProductMonthStatsChart", productLabels, productInfo);
     }
 </script>

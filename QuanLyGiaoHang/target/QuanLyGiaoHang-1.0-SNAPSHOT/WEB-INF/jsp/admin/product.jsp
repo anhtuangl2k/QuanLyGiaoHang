@@ -4,142 +4,213 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:url value="/admin/product" var="action"/>
-<c:if test="${successMsg != null}">
-    <div class="alert alert-success">${successMsg}</div>
-</c:if>
-    
-<c:if test="${errMsg != null}">
-    <div class="alert alert-danger">${errMsg}</div>
-</c:if>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
-  Thêm sản phẩm
-</button>
 
-<!-- Modal Add -->
-<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form:form method="post" action="${action}" modelAttribute="product" enctype="multipart/form-data">
-            <div class="modal-body">
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <!--Content-wrapper-->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Tour Manage</h1>
+                        </div>
 
-                  <div class="form-group">
-                      <label for="content">Tên sản phẩm</label>
-                      <form:input type="text"  path="name" cssClass="form-control"/>
-                      <form:errors path="name" cssClass="alert alert-danger" element="div" />
-                  </div>
+                        <!-- Search -->
+                        <div class="col-sm-5">
+                            <form>
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control form-control-navbar" name="kw" type="search" placeholder="Search" aria-label="Search" >
+                                    <div class="input-group-append">
+                                        <button class="btn btn-navbar" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div >
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg-add">Add Product</button>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
 
-                  <div class="form-group">
-                      <label for="moneyReduce">Số tiền</label>
-                      <form:input type="number" path="price" cssClass="form-control"/>
-                      <form:errors path="price" cssClass="alert alert-danger" element="div" />
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="moneyReduce">Số lượng</label>
-                      <form:input type="number" path="amount" cssClass="form-control"/>
-                      <form:errors path="amount" cssClass="alert alert-danger" element="div" />
-                  </div>
-                  
-                <div class="form-group">
-                  <label for="content">Ảnh</label>
-                  <form:input type="file"  path="file" cssClass="form-control"/>
-                  <form:errors path="file" cssClass="alert alert-danger" element="div" />
-              </div>
+                <c:if test="${errMsg != null}">
+                    <div class="alert alert-danger">${errMsg}</div>
+                </c:if>
+                <c:if test="${successMsg != null}">
+                    <div class="alert alert-success">${successMsg}</div>
+                </c:if>
+            </section>
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <input type="submit" value="Thêm sản phẩm" class="btn btn-primary"/>
-            </div>
-        </form:form>
-    </div>
-  </div>
-</div> 
 
-<form action="">
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" name="kw" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-      <input type="submit" value="Search" class="btn-primary">
-  </div>
-</div>
-</form>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Tên sản phẩm</th>
-      <th scope="col">Giá tiền</th>
-      <th scope="col">Số lượng còn lại</th>
-      <th scope="col">Sửa</th>
-      <th scope="col">Xóa</th>
-    </tr>
-  </thead>
-  
+ <!-- ======================================form add========================================== -->
+            <div class="modal fade" id="modal-lg-add">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Sản phẩm</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form:form method="post" action="${action}" modelAttribute="product" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <form:input type="text" class="form-control" path="name" placeholder="Tour name"/>
+                                    <form:errors path="name" cssClass="text-danger" element="div"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Price</label>
+                                    <form:input path="price" type="number" class="form-control" placeholder="Price"/>
+                                    <form:errors path="price" cssClass="text-danger" element="div"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="meetingplace">Amount</label>
+                                    <form:input path="amount" type="number" class="form-control"  placeholder="Amount"/>
+                                    <form:errors path="amount" cssClass="alert alert-danger" element="div"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <form:input type="file" class="custom-file-input" id="exampleInputFile" path="file" />
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-  <tbody>
-        <c:forEach var="p" items="${products}">
-        <tr>
-          <th scope="row">${p.id}</th>
-          <td>${p.name}</td>
-          <td>${p.price}</td>
-          <td>${p.amount}</td>
-          <td><button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenterUpdate" onclick="getProduct(${p.id})">Sửa</button></td>
-          <td><button type="button" class="btn btn-danger" data-dismiss="modal" >Xóa</button></td>
-        </tr>
-      </c:forEach>
-  </tbody>
-</table>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-      <c:forEach begin="1" end="${Math.ceil(counter/12)}" var="i">
-          <li class="page-item"><a class="page-link" href="<c:url value="/admin/product"/>?page=${i}">${i}</a></li>
-      </c:forEach>
-
-  </ul>
-</nav>
-
-<!-- Modal Update -->
-<div class="modal fade" id="exampleModalCenterUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form action="">
-            <div class="modal-body">
-                <input type="hidden" name="id" id="idProduct" class="form-control" />
-                <div class="form-group">
-                    <label>Tên sản phẩm</label>
-                    <input type="text" name="name" id="nameProduct" class="form-control" />
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save"/>
+                            </div>
+                        </form:form>
+                    </div>
                 </div>
+            </div>
+            <!-- ======================================form update========================================== -->
+            <div class="modal fade" id="modal-lg">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update Tour</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
 
-                  <div class="form-group">
-                      <label for="moneyReduce">Số tiền</label>
-                      <input type="number" name="price" id="priceProduct" class="form-control"/>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="moneyReduce">Số lượng</label>
-                      <input type="number" name="amount" id="amountProduct" class="form-control"/>
-                  </div>
-                  
+                            <form action="">
+                                <input type="hidden" name="id" id="idProduct" class="form-control" />
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" name="name" id="nameProduct"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Price</label>
+                                    <input type="number" class="form-control" name="price" id="priceProduct"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="meetingplace">Amount</label>
+                                    <input type="number" class="form-control"  name="amount" id="amountProduct"/>
+                                </div>
+
+                            </form> 
+
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <input type="submit" value="Cập nhật" class="btn btn-primary"/>
-            </div>
-        </form>
-    </div>
-  </div>
-</div> 
+
+            <!-- ======================================table========================================== -->
+              <section class="content">
+                <div class="card-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6"></div>
+                            <div class="col-sm-12 col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                                       aria-describedby="example2_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1">
+                                                Image</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1">
+                                                Tên sản phẩm</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1">
+                                                Giá tiền</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                                colspan="1">
+                                                Số lượng</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
+                                                Delete</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
+                                                Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <c:forEach  var="p" items="${products}">
+                                            <tr role="row" class="odd">
+                                                <td><img src="${p.image}" height="50px" width="70px"/></td>
+                                                <td>${p.name}</td>
+                                                <td>${p.price}</td>
+                                                <td>${t.amount}</td>
+                                                <td style="padding: 5px">
+                                                    <button type="button"
+                                                            class="btn btn-block bg-gradient-danger">Delete</button>
+                                                </td>
+                                                <td style="padding: 5px">
+                                                    <button type="button"
+                                                            class="btn btn-block bg-gradient-primary" onclick="getProduct(${p.id})" data-toggle="modal" data-target="#modal-lg">Update</button>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite"></div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                    <ul class="pagination">
+
+
+
+                                        <c:forEach begin="1" end="${Math.ceil(counter/12)}" var="i">   
+                                            <li class="paginate_button page-item active" ><a class="page-link" href="<c:url value="/admin/product"/>?page=${i}">${i}</a></li>                                            
+                                            </c:forEach>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          
+    </body>
+</html>
+    
+    
+    
