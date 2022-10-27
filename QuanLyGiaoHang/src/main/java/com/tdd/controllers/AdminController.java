@@ -142,4 +142,16 @@ public class AdminController {
         model.addAttribute("productMonthStats", this.receiptService.receiptMonthStats(null, fromDate, toDate));    
         return "month-stats";
     }
+    
+    @GetMapping("/admin/shipper")
+    public String shipper(Model model){
+        model.addAttribute("shipper", this.accountService.listShipper());
+        return "shipper";
+    }
+    
+    @GetMapping("/admin/guest")
+    public String guest(Model model){
+        model.addAttribute("guest", this.accountService.listGuest());
+        return "guest";
+    }
 }

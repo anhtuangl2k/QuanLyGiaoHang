@@ -6,8 +6,10 @@
 package com.tdd.controllers;
 
 import com.tdd.pojos.Receipt;
+import com.tdd.pojos.ReceiptProduct;
 import com.tdd.service.AccountService;
 import com.tdd.service.ReceiptService;
+import com.tdd.service.Receipt_ProductService;
 import com.tdd.utils.Utils;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,8 @@ public class ReceiptController {
     private ReceiptService receiptService;
     @Autowired
     private AccountService accountService;
-    
+    @Autowired
+    private Receipt_ProductService receipt_ProductService;
     
     @GetMapping("/order")
     public String order(Model model){
@@ -58,8 +61,11 @@ public class ReceiptController {
     @GetMapping("/orderdetail")
     public String detail(Model model, @RequestParam(required = false) Map<String, String> params){
         Integer id = Integer.parseInt( params.get("id"));
+        List<ReceiptProduct> list = this.receipt_ProductService.listReceiptProduct(id);
+        if(list != null){
+            model.addAttribute("list", list);
+        }
         model.addAttribute("receipt", this.receiptService.getReceiptById(id));
-        System.out.println(this.receiptService.getReceiptById(id).getCommentCollection());
         return "receive-details";
     }
     

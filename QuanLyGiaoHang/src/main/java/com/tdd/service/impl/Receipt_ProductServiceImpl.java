@@ -17,6 +17,7 @@ import com.tdd.utils.Utils;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,11 @@ public class Receipt_ProductServiceImpl implements Receipt_ProductService{
             System.out.println(e.getMessage() + "===ERROR ADD RECEIPT===");
         }
         return false;
+    }
+
+    @Override
+    public List<ReceiptProduct> listReceiptProduct(int id) {
+        return this.receipt_ProductResponsitory.listReceiptProduct(id);
     }
     
 }

@@ -83,6 +83,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/jsp/admin/receipt-month-stats.jsp"/>
     </definition>
     
+    <definition name="shipper" extends="baseAdminLayout">
+        <put-attribute name="title" value="Shipper"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/shipper.jsp"/>
+    </definition>
+    
+    <definition name="guest" extends="baseAdminLayout">
+        <put-attribute name="title" value="Guest"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/admin/guest.jsp"/>
+    </definition>
+    
 </tiles-definitions>
 
 

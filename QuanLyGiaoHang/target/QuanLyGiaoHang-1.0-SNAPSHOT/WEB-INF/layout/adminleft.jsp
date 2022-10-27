@@ -88,6 +88,18 @@
                                 <p>Duyệt đơn shipper</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<c:url value="/admin/guest"/>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Khách hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<c:url value="/admin/shipper"/>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Shipper</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

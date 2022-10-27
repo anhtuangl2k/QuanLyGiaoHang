@@ -87,5 +87,35 @@ public class AccountResponsitoryImpl implements AccountResponsitory{
         Query q = session.createQuery(query);
         return q.getResultList();
     }
+
+    @Override
+    public List<Account> listGuest() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();       
+        CriteriaQuery<Account> query = builder.createQuery(Account.class);
+        Root<Account> root = query.from(Account.class);
+        query = query.select(root);
+        
+        Predicate p = builder.equal(root.get("type"), Account.GUEST);
+        
+        query = query.where(p);  
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Account> listShipper() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();       
+        CriteriaQuery<Account> query = builder.createQuery(Account.class);
+        Root<Account> root = query.from(Account.class);
+        query = query.select(root);
+        
+        Predicate p = builder.equal(root.get("type"), Account.SHIPPER);
+        
+        query = query.where(p);  
+        Query q = session.createQuery(query);
+        return q.getResultList();
+    }
     
 }

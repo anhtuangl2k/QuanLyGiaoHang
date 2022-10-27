@@ -77,6 +77,16 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> getAccounts(String username) {
         return this.accountResponsitory.getAccounts(username);
     }
+
+    @Override
+    public List<Account> listGuest() {
+        return this.accountResponsitory.listGuest();
+    }
+
+    @Override
+    public List<Account> listShipper() {
+        return this.accountResponsitory.listShipper();
+    }
     
     
 }
