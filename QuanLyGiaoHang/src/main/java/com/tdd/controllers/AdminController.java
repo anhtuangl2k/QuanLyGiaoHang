@@ -76,7 +76,7 @@ public class AdminController {
         int page = Integer.parseInt(params.getOrDefault("page", "1"));
         
         model.addAttribute("counter", this.productService.countProduct());
-        System.out.println(params.get("id"));
+
         
         Integer id = null;
         if(params.get("id") != null){
@@ -98,15 +98,35 @@ public class AdminController {
     }
     
     @PostMapping("/admin/product")
-    public String productManager(Model model, @ModelAttribute(value = "product")@Valid Product product, BindingResult result) throws IOException{
+    public String productManager(Model model, @ModelAttribute(value = "product")@Valid Product product, BindingResult result,
+            @RequestParam(required = false) Map<String, String> params) throws IOException{
         if(!result.hasErrors()){           
-            if(this.productService.addOrUpdate(product))
+            if(this.productService.addOrUpdate(product)){
+              
                 model.addAttribute("successMsg", "Thêm sản phẩm thành công");
+            }               
             else
                 model.addAttribute("errMsg", "Có lỗi xảy ra");
         }   
         return "product";
     }
+    
+    @GetMapping("/admin/deleteProduct")
+    public String detail(Model model, @RequestParam(required = false) Map<String, String> params){
+        Integer id = Integer.parseInt( params.get("id"));
+        Product p = this.productService.getProductByID(id);
+        if(p.getReceiptProductCollection().size() > 0){
+            model.addAttribute("errMsg", "Sản phẩm đang được dử dụng, ko thể xóa");
+        }else{
+            if(this.productService.deleteProduct(id)){
+                model.addAttribute("successMsg", "Xóa thành công");
+            }else{
+                model.addAttribute("errMsg", "Cõ lỗi xảy ra");
+            }
+        }
+        return "redirect:/admin/product";
+    }
+            
     
     @GetMapping("/admin/statistic")
     public String statistic(Model model, @RequestParam(required = false) Map<String, String> params) throws ParseException{

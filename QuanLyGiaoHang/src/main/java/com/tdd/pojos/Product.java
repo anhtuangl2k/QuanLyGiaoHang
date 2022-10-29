@@ -11,6 +11,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Product.findByAmount", query = "SELECT p FROM Product p WHERE p.amount = :amount")})
 public class Product implements Serializable {
 
-    @OneToMany(mappedBy = "productID")
+    @OneToMany(mappedBy = "productID", fetch = FetchType.EAGER)
     @JsonIgnore
     private Collection<ReceiptProduct> receiptProductCollection;
     @JsonIgnore

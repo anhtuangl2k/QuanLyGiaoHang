@@ -172,8 +172,10 @@
                                                 <td>${p.price}</td>
                                                 <td>${t.amount}</td>
                                                 <td style="padding: 5px">
+                                                    <a href="<c:url value="/admin/deleteProduct"/>?id=${p.id}">
                                                     <button type="button"
                                                             class="btn btn-block bg-gradient-danger">Delete</button>
+                                                    </a>
                                                 </td>
                                                 <td style="padding: 5px">
                                                     <button type="button"

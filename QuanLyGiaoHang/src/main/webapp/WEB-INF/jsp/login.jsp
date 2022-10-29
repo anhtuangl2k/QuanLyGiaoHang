@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-    <link rel="stylesheet" href="<c:url value="/css/styleLogin.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/styleIconLogin.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.login.css"/>">
+    <link rel="stylesheet" href="<c:url value="resources/css/styleLogin.css"/>">
+    <link rel="stylesheet" href="<c:url value="resources/css/styleIconLogin.css"/>">
+    <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.login.css"/>">
 
     <title>Đăng nhập</title>
   </head>
@@ -82,6 +82,26 @@
         
       </div>
     </div>
-  </div>
+  </div>        
+    <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+    <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+                  
   </body>
 </html>
+
+<script>
+    $(function() {
+	'use strict';
+
+	
+  $('.form-control').on('input', function() {
+	  var $field = $(this).closest('.form-group');
+	  if (this.value) {
+	    $field.addClass('field--not-empty');
+	  } else {
+	    $field.removeClass('field--not-empty');
+	  }
+	});
+
+});
+</script>
