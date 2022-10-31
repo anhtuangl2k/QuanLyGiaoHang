@@ -22,7 +22,7 @@ function productChart(id, productLabels = [], productInfo = []){
     };
     
     const config = {
-        type : 'line',
+        type : 'bar',
         data : data,
     };
     
@@ -47,7 +47,7 @@ function productMonthChart(id, productLabels = [], productInfo = []){
     };
     
     const config = {
-        type : 'bar',
+        type : 'line',
         data : data,
     };
     

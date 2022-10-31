@@ -64,7 +64,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Manages
+                            Quản lý
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -85,7 +85,7 @@
                         <li class="nav-item">
                             <a href="<c:url value="/admin/browsing-shipper"/>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Duyệt đơn shipper</p>
+                                <p>Duyệt đơn đăng ký</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -97,7 +97,7 @@
                         <li class="nav-item">
                             <a href="<c:url value="/admin/shipper"/>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Shipper</p>
+                                <p>Nhân viên giao hàng</p>
                             </a>
                         </li>
                     </ul>

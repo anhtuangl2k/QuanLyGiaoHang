@@ -16,7 +16,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Tour Manage</h1>
+                            <h1>SẢN PHẨM</h1>
                         </div>
 
                         <!-- Search -->

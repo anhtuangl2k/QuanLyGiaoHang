@@ -14,16 +14,21 @@
                         <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                aria-describedby="example2_info">
                             <thead style="text-align: center">
+                                <tr>   
+                                    <td colspan="5">
+                                        <h3>QUẢN LÝ KHÁCH HÀNG</h3>
+                                    </td>
+                                </tr>
                                 <tr role="row">             
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Username</th>
+                                        Tên tài khoản</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Name</th>
+                                        Họ tên</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Address</th>
+                                        Địa chỉ</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
                                         Gmail</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">

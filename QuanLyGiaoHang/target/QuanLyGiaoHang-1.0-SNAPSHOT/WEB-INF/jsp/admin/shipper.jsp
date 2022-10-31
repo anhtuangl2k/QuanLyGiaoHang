@@ -14,16 +14,21 @@
                         <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                aria-describedby="example2_info">
                             <thead style="text-align: center">
+                                <tr>
+                                    <td colspan="5">
+                                         <h3>QUẢN LÝ NHÂN VIÊN GIAO HÀNG</h3>
+                                    </td>
+                                </tr>
                                 <tr role="row">             
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Username</th>
+                                        Tên tài khoản</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Name</th>
+                                        Họ tên</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                         colspan="1">
-                                        Address</th>
+                                        Địa chỉ</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
                                         Gmail</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1">
@@ -32,13 +37,15 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="g" items="${shipper}">
-                                    <tr role="row" class="odd">
-                                        <td class="col-sm-2">${g.username}</td>
-                                        <td class="col-sm-4">${g.name}</td>
-                                        <td class="col-sm-4">${g.address}</td>
-                                        <td class="col-sm-4">${g.gmail}</td>
-                                        <td class="col-sm-4">${g.cmnd}</td>
-                                    </tr>
+                                    <c:if test="${g.status == 1}">
+                                        <tr role="row" class="odd">
+                                            <td class="col-sm-2">${g.username}</td>
+                                            <td class="col-sm-4">${g.name}</td>
+                                            <td class="col-sm-4">${g.address}</td>
+                                            <td class="col-sm-4">${g.gmail}</td>
+                                            <td class="col-sm-4">${g.cmnd}</td>
+                                        </tr>
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>
