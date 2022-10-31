@@ -12,7 +12,10 @@
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Tên shipper</th>
+        <h3>DUYỆT ĐƠN ĐĂNG KÝ</h3>
+      </tr>
+      <tr>
+        <th scope="col">Họ tên</th>
         <th scope="col">Địa chỉ</th>
         <th scope="col">Gmail</th>
         <th scope="col">Số điện thoại</th>

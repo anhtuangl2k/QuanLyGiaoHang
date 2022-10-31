@@ -31,7 +31,7 @@
               <label for="type">Loại tài khoản</label>
               <form:select path="type" cssClass="form-control">
                   <<option value="1">Khách hàng</option>
-                  <<option value="2">Shipper</option>
+                  <<option value="2">Nhân viên giao hàng</option>
               </form:select>
               <form:errors path="type" cssClass="alert alert-danger" element="div" />
           </div>

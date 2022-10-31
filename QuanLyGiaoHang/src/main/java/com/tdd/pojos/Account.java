@@ -58,8 +58,8 @@ public class Account implements Serializable {
     private String phone;
     
     public static int ADMIN = 0;
-    public static int SHIPPER = 1;
-    public static int GUEST = 2;
+    public static int SHIPPER = 2;
+    public static int GUEST = 1;
     
     public static int DISABLE = 0;
     public static int ENABLE = 1;

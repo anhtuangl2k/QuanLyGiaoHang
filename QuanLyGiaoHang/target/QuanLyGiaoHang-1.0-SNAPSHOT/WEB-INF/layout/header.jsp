@@ -74,9 +74,11 @@
         <div class="header-navigation">
           <ul>
             <li class="dropdown"><a data-target="#" href="<c:url value="/"/>">Trang chủ</a></li>
-            <li class="dropdown"><a data-target="#" href="<c:url value="/sell-Product"/>">Mua hàng</a></li>
-            <li class="dropdown"><a data-target="#" href="<c:url value="/order"/>">Hóa đơn</a></li>
-            <li class="dropdown"><a data-target="#" href="<c:url value="/receive"/>">Nhận đơn</a></li>
+            <li class="dropdown"><a data-target="#" href="<c:url value="/sell-Product"/>">Danh sách sản phẩm</a></li>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <li class="dropdown"><a data-target="#" href="<c:url value="/order"/>">Đơn đặt hàng</a></li>
+                <li class="dropdown"><a data-target="#" href="<c:url value="/receive"/>">Nhận đơn</a></li>
+            </c:if>
             <li class="dropdown"><a data-target="#" href="#">Thông tin của hàng</a></li>
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
