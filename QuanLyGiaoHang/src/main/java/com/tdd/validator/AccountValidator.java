@@ -44,8 +44,7 @@ public class AccountValidator implements Validator{
         if(p.getType() == Account.SHIPPER && p.getFile().isEmpty()){
             errors.rejectValue("file", "account.avt.null");
         }
-        
-        if(this.accountService.getAccounts(p.getUsername()) != null){
+        if(!this.accountService.getAccounts(p.getUsername()).isEmpty()){
             errors.rejectValue("username", "account.username.isHas");
         }
     }
